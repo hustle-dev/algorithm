@@ -6,3 +6,29 @@
   
 */
 
+cin.eof()
+간혹, 알고리즘 문제에서 입력값의 범위가 주어지지 않는 경우가 있다. 이는 파일이 종료될때까지 입력을 받으라는 의미이므로, cin.eof()를 사용하면 된다.
+ 
+
+bool타입을 가진다.
+
+만약 파일의 끝을 의미하는 EOF를 읽게 되면, true값으로 바뀌게 된다.
+
+콘솔 창에서는 EOF를 수동으로 넣어주어야 한다. 이때, 윈도우 기준 ctrl+z가 EOF를 의미한다.
+
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int a, b;
+    while(1)
+    {
+        cin >> a >> b;
+        if(cin.eof() == true)
+            break;
+        cout << a+b << endl;
+    }
+    return 0;
+}
