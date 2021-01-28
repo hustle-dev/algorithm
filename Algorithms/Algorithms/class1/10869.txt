@@ -1,0 +1,24 @@
+/* 
+  10869.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/01/28.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int a, b;
+    
+    cin >> a >> b;
+    
+    cout << a+b << endl;
+    cout << a-b << endl;
+    cout << a*b << endl;
+    cout << a/b << endl;
+    cout << a%b << endl;
+    return 0;
+}
