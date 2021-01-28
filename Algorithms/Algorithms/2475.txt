@@ -1,0 +1,23 @@
+/* 
+  2475.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/01/28.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int a, b, c, d, e;
+    int sum;
+    
+    cin >> a >> b >> c >> d >> e;
+    
+    sum = (a*a) + (b*b) + (c*c) + (d*d) + (e*e);
+    
+    cout << sum%10 << endl;
+    return 0;
+}
