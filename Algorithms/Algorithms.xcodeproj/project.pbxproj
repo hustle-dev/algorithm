@@ -23,16 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		09260E1225BE788100F72E50 /* 1000.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1000.txt; sourceTree = "<group>"; };
-		09338E6625C0467700ECD880 /* 1001.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1001.txt; sourceTree = "<group>"; };
-		09338E6825C0483A00ECD880 /* 1008.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1008.txt; sourceTree = "<group>"; };
-		09338E6A25C048D400ECD880 /* 1330.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1330.txt; sourceTree = "<group>"; };
-		09338E6C25C04A6D00ECD880 /* 2438.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 2438.txt; sourceTree = "<group>"; };
 		09E53D8C25BE7416004774BA /* Algorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithms; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E53D8F25BE7416004774BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		09F7F52025C269A200D3EE60 /* 2475.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 2475.txt; sourceTree = "<group>"; };
-		09F7F52225C269E600D3EE60 /* 2557.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 2557.txt; sourceTree = "<group>"; };
-		09F7F52425C26C3E00D3EE60 /* 2562.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 2562.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,14 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				09E53D8F25BE7416004774BA /* main.cpp */,
-				09260E1225BE788100F72E50 /* 1000.txt */,
-				09338E6625C0467700ECD880 /* 1001.txt */,
-				09338E6825C0483A00ECD880 /* 1008.txt */,
-				09338E6A25C048D400ECD880 /* 1330.txt */,
-				09338E6C25C04A6D00ECD880 /* 2438.txt */,
-				09F7F52025C269A200D3EE60 /* 2475.txt */,
-				09F7F52225C269E600D3EE60 /* 2557.txt */,
-				09F7F52425C26C3E00D3EE60 /* 2562.txt */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
