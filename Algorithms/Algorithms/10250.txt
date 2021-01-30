@@ -1,0 +1,42 @@
+/* 
+  10250.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/01/30.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int t, h, w, n;
+    int share, rest;
+    int temp;
+    
+    
+    cin >> t;
+    
+    for(int i = 0; i<t; i++)
+    {
+        cin >> h >> w >> n;
+        
+        share = n / h;
+        rest = n % h;
+        
+        if(rest == 0)
+        {
+            temp = h*100 + share;
+            cout << temp << endl;
+        }
+        else
+        {
+            temp = rest*100 +share+1;
+            cout << temp << endl;
+        }
+
+    }
+    return 0;
+    
+}

@@ -1,0 +1,37 @@
+/* 
+  1085.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/01/30.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    int x, y, w, h;
+    
+    cin >> x >> y >> w >> h;
+    
+    int minheight, minwidth;
+    
+    // (0, 0) (w, 0) (0, h) (w, h)
+    if(x <= w-x)
+        minwidth = x;
+    else
+        minwidth = w-x;
+    
+    if(y <= h-y)
+        minheight = y;
+    else
+        minheight = h-y;
+    
+    if(minwidth<=minheight)
+        cout << minwidth << endl;
+    else
+        cout << minheight << endl;
+    
+    return 0;
+}
