@@ -1,0 +1,30 @@
+/* 
+  11050.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/02/04.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int factorial(int n);
+
+int main(void)
+{
+    int n, k;
+    
+    cin >> n >> k;
+    
+    cout << factorial(n)/(factorial(k) * factorial(n-k)) << endl;
+    return 0;
+}
+
+int factorial(int n)
+{
+    if (n == 1 || n == 0)
+        return 1;
+    else
+        return n*factorial(n-1);
+}

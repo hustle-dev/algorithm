@@ -4,32 +4,22 @@ using namespace std;
 int main(void)
 {
     int n, m;
-    int result = 0;
     
     cin >> n >> m;
     
-    int arr[n];
+    int ** arr = new int*[n];
+    
     for(int i = 0; i<n; i++)
     {
-        cin >> arr[i];
+        arr[i] = new int[m];
     }
     
-    for(int i = 0; i<n-2; i++)
+    for(int i = 0; i<n; i++)
     {
-        for(int j = 1; j<n-1; j++)
+        for(int j = 0; j<m; j++)
         {
-            for(int k =2; k<n; k++)
-            {
-                if((arr[i] + arr[j] + arr[k] <= m) && ((m - result) > (m-arr[i] - arr[j] - arr[k])) && (arr[i] != arr[j]
-                                                                                                        && arr[j] != arr[k]
-                                                                                                        && arr[i] != arr[k]))
-                {
-                    result = arr[i] + arr[j] + arr[k];
-                }
-                
-            }
+            cin >> arr[i][j]
         }
     }
-    cout << result << endl;
-    return 0;
+    
 }
