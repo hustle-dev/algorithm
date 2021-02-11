@@ -1,60 +1,55 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-vector<int> v1;
-int chk;
-void bs_search(int num)
+class member
 {
-    int left = 0;
-    int right = (int)v1.size() -1;
-    int mid;
-    
-    while(left <= right)
+private:
+    int age;
+    char *name;
+public:
+    member(int aage, char* aname) : age(aage)
     {
-        mid = (left+right) / 2;
-        if(v1[mid] == num)
-        {
-            chk++;
-            break;
-        }
-        else if(v1[mid] < num)
-            left = mid+1;
-        else
-        {
-            right = mid-1;
-        }
+        int len = strlen(aname) + 1;
+        name = new char(len);
+        strcpy(name, aname);
     }
-}
+    member()
+    {
+        age = 0;
+        name = NULL;
+    }
+    void setmember(int aage, char* aname)
+    {
+        name = aname;
+        age = aage;
+    }
+    void show()
+    {
+        
+    }
+    ~member()
+    {
+        delete[] name;
+    }
+};
 
 int main(void)
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int n, m;
-    int num;
-    
+    int n;
+    int aage;
+    char aname[20];
     cin >> n;
+    
+    member m1[n];
+    // member* m1 = new member[n];
     
     for(int i = 0; i<n; i++)
     {
-        cin >> num;
-        v1.push_back(num);
+        cin >> aage >> aname;
+        m1[i].setmember(aage, aname);
     }
-    sort(v1.begin(), v1.end());
-    cin >> m;
-    for(int i = 0; i<m; i++)
-    {
-        cin >> num;
-        chk = 0;
-        bs_search(num);
-        if(chk != 0)
-            cout << 1 << '\n';
-        else
-            cout << 0 << '\n';
-    }
-
-    return 0;
+    
 }

@@ -1,0 +1,47 @@
+/* 
+  1978.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/02/11.
+  
+*/
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int p_num(int num)
+{
+    if(num == 1)
+        return 0;
+    
+    int end = sqrt(num);
+    for(int i = 2; i<= end; i++)
+    {
+        if(num % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n;
+    int chk = 0;
+    int num;
+    cin >> n;
+    
+    for(int i  = 0; i<n; i++)
+    {
+        cin >> num;
+        if(p_num(num) == 1)
+            chk++;
+    }
+    cout << chk << '\n';
+    return 0;
+}
+
+
+소수를 구할 때, 굳이 그 수 끝까지 숫자를 나누어보지 않고도 특정한 숫자의 제곱근 까지만 약수의 여부를 검증해보아도 식이 성립한다!! --> 중요!

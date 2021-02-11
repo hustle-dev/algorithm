@@ -1,0 +1,44 @@
+/* 
+  2609.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/02/11.
+  
+*/
+
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n, m, min_num;
+    int max_num=0;
+    
+    cin >> n >> m;
+    
+    if(n<m)
+    {
+        for(int i = 1; i<=n; i++)
+        {
+            if((n%i == 0) && (m%i == 0))
+                if(max_num < i)
+                    max_num = i;
+        }
+    }
+    else
+    {
+        for(int i = 1; i<=m; i++)
+        {
+            if((n%i == 0) && (m%i == 0))
+                if(max_num < i)
+                    max_num = i;
+        }
+    }
+    min_num = (n/max_num) * (m/max_num) * max_num;
+    cout << max_num << '\n';
+    cout << min_num << '\n';
+    return 0;
+}
