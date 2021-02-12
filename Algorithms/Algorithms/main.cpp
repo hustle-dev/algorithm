@@ -1,37 +1,17 @@
 #include <iostream>
+#include <cstring>
+#include <algorithm>
 using namespace std;
 
-class member
-{
-private:
+typedef struct mem{
     int age;
-    char *name;
-public:
-    member(int aage, char* aname) : age(aage)
-    {
-        int len = strlen(aname) + 1;
-        name = new char(len);
-        strcpy(name, aname);
-    }
-    member()
-    {
-        age = 0;
-        name = NULL;
-    }
-    void setmember(int aage, char* aname)
-    {
-        name = aname;
-        age = aage;
-    }
-    void show()
-    {
-        
-    }
-    ~member()
-    {
-        delete[] name;
-    }
-};
+    char name[20];
+} member;
+
+bool compare(member m1,member m2)
+{
+    return m1.age < m2.age;
+}
 
 int main(void)
 {
@@ -41,15 +21,23 @@ int main(void)
     int n;
     int aage;
     char aname[20];
+    
     cin >> n;
     
     member m1[n];
-    // member* m1 = new member[n];
-    
+
     for(int i = 0; i<n; i++)
     {
         cin >> aage >> aname;
-        m1[i].setmember(aage, aname);
+        m1[i].age = aage;
+        strcpy(m1[i].name, aname);
+    }
+    sort(m1, m1+n, compare);
+    
+    for(int i = 0; i<n; i++)
+    {
+        cout << m1[i].age << ' ' << m1[i].name << '\n';
     }
     
+    return 0;
 }
