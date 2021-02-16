@@ -5,3 +5,46 @@
   Created by Lee JeongMin on 2021/02/12.
   
 */
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+typedef struct mem
+{
+    int age;
+    string name;
+} member;
+
+bool comp(const member& m1, const member& m2)
+{
+    return m1.age < m2.age;
+}
+
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n;
+    member m;
+    
+    cin >> n;
+    
+    vector<member> m1;
+    
+    for(int i = 0; i<n; i++)
+    {
+        cin >> m.age >> m.name;
+        m1.push_back(m);
+    }
+    stable_sort(m1.begin(), m1.end(), comp);
+    
+    for(int i = 0; i<n; i++)
+    {
+        cout << m1[i].age << ' ' << m1[i].name << '\n';
+    }
+    return 0;
+}

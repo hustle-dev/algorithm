@@ -1,17 +1,18 @@
 #include <iostream>
-#include <cstring>
 #include <algorithm>
 using namespace std;
 
-typedef struct mem{
+typedef struct mem
+{
     int age;
-    char name[20];
+    string name;
 } member;
 
-bool compare(member m1,member m2)
+bool compare(member m1, member m2)
 {
     return m1.age < m2.age;
 }
+
 
 int main(void)
 {
@@ -19,20 +20,16 @@ int main(void)
     cin.tie(0);
     
     int n;
-    int aage;
-    char aname[20];
     
     cin >> n;
     
     member m1[n];
-
+    
     for(int i = 0; i<n; i++)
     {
-        cin >> aage >> aname;
-        m1[i].age = aage;
-        strcpy(m1[i].name, aname);
+        cin >> m1[i].age >> m1[i].name;
     }
-    sort(m1, m1+n, compare);
+    stable_sort(m1, m1+n, compare);
     
     for(int i = 0; i<n; i++)
     {
