@@ -1,0 +1,42 @@
+/* 
+  10816.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/02/18.
+  
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n, m;
+    int num;
+    
+    cin >> n;
+    
+    vector<int> v1;
+    
+    for(int i = 0; i<n; i++)
+    {
+        cin >> num;
+        v1.push_back(num);
+    }
+    sort(v1.begin(), v1.end());
+    
+    cin >> m;
+    for(int i = 0; i<m; i++)
+    {
+        cin >> num;
+        cout << (upper_bound(v1.begin(), v1.end(), num) - v1.begin()) - (lower_bound(v1.begin(), v1.end(), num) - v1.begin()) << ' ';
+    }
+    cout << '\n';
+    return 0;
+}
