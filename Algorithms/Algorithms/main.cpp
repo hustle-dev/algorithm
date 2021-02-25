@@ -4,7 +4,6 @@ using namespace std;
 
 int myqueue[10001];
 int front, rear = 0;
-int size;
 
 int main(void)
 {
@@ -14,6 +13,7 @@ int main(void)
     int n;
     int num;
     string command;
+    int size;
     
     cin >> n;
     
