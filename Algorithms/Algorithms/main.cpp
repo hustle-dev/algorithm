@@ -1,126 +1,75 @@
 #include <iostream>
-#include <cstdlib>
-#include <cstring>
 
 using namespace std;
 
-typedef struct node
-{
-    int data;
-    struct node* next;
-} Node;
-
-typedef struct stack
-{
-    Node* top;
-}Stack;
-
-void InitStack(Stack *s)
-{
-    s->top = NULL;
-}
-
-void PushStack(Stack *s, int data)
-{
-    Node* n = (Node*)malloc(sizeof(Node));
-    n->data = data;
-    
-    n->next = s->top;
-    s->top = n;
-}
-
-int PopStack(Stack* s)
-{
-    int data;
-    Node* temp;
-    
-    if(s->top == NULL)
-        return -1;
-    
-    data = s->top->data;
-    temp = s->top;
-    
-    s->top = s->top->next;
-    free(temp);
-    
-    return data;
-}
-
-int IsEmpty(Stack* s)
-{
-    if(s->top == NULL)
-        return true;
-    else
-        return false;
-}
-
-int PrintSize(Stack *s)
-{
-    if(s->top == NULL)
-        return 0;
-    int num=0;
-    Node * temp = s->top;
-    while(s->top != NULL)
-    {
-        num++;
-        s->top = s->top->next;
-    }
-    s->top = temp;
-    
-    return num;
-}
-
-void PrintTop(Stack *s)
-{
-    if(s->top == NULL)
-        cout << -1 << '\n';
-    else
-        cout << s->top->data << '\n';
-}
+int myqueue[10001];
+int front, rear = 0;
+int size;
 
 int main(void)
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int n, pn;
-    int result;
-    Stack st;
+    int n;
+    int num;
     string command;
     
-    InitStack(&st);
-
     cin >> n;
     
-    for(int i =0; i<n; i++)
+    for(int i = 0; i<n; i++)
     {
         cin >> command;
+        
         if(command == "push")
         {
-            cin >> pn;
-            PushStack(&st, pn);
+            cin >> num;
+            myqueue[rear] = num;
+            rear++;
+            size = rear-front;
         }
         else if(command == "pop")
         {
-            result = PopStack(&st);
-            cout << result << '\n';
+            if(size == 0)
+                cout << -1 << '\n';
+            else
+            {
+                cout << myqueue[front] << '\n';
+                front++;
+                size = rear-front;
+            }
         }
         else if(command == "size")
         {
-            result = PrintSize(&st);
-            cout << result << '\n';
+            cout << size << '\n';
         }
         else if(command == "empty")
         {
-            result = IsEmpty(&st);
-            cout << result << '\n';
+            if(size == 0)
+            {
+                cout << 1 << '\n';
+            }
+            else
+                cout << 0 << '\n';
         }
-        else
+        else if(command == "front")
         {
-            PrintTop(&st);
+            if(size == 0)
+            {
+                cout << -1 << '\n';
+            }
+            else
+                cout << myqueue[front] << '\n';
+        }
+        else if(command == "back")
+        {
+            if(size == 0)
+            {
+                cout << -1 << '\n';
+            }
+            else
+                cout << myqueue[rear-1] << '\n';
         }
     }
-    
     return 0;
-    
 }

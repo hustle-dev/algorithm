@@ -1,0 +1,107 @@
+/* 
+  10845.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/02/19.
+  
+*/
+
+#include <iostream>
+
+using namespace std;
+
+typedef struct node
+{
+    int data;
+    struct node* next;
+}Node;
+
+typedef struct myqueue
+{
+    Node* front;
+    Node* rear;
+} MyQueue;
+
+void InitQ(MyQueue * q)
+{
+    q->front = NULL;
+    q->rear = NULL;
+}
+
+void PushQ(MyQueue *q, int data)
+{
+    Node * n = (Node*)malloc(sizeof(Node));
+    
+    if(q->front == NULL)
+    {
+        q->front = n;
+        q->rear = n;
+        q->front->next = NULL;
+        q->rear->next = NULL;
+    }
+    else
+    {
+        q->rear->next = n;
+        q->rear = n;
+    }
+}
+
+int PopQ(MyQueue*q)
+{
+    if(q->front == NULL)
+    {
+        return -1;
+    }
+    Node* temp = q->front;
+    int data = q->front->data;
+    
+    q->front = q->front->next;
+    
+}
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n;
+    string command;
+    int num;
+    
+    cin >> n;
+    
+    for(int i = 0; i<n; i++)
+    {
+        cin >> command;
+        
+        if(command == "push")
+        {
+            cin >> num;
+            
+        }
+        else if(command == "pop")
+        {
+            
+        }
+        
+        else if(command == "size")
+        {
+            
+        }
+        
+        else if(command == "empty")
+        {
+            
+        }
+        
+        else if(command == "front")
+        {
+            
+        }
+        
+        else if(command == "back")
+        {
+            
+        }
+    }
+}
