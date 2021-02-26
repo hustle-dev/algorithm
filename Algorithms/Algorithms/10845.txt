@@ -10,97 +10,9 @@
 
 using namespace std;
 
-typedef struct node
-{
-    int data;
-    struct node* next;
-}Node;
+int myqueue[10001];
+int head, tail = 0;
 
-typedef struct myqueue
-{
-    Node* front;
-    Node* rear;
-} MyQueue;
-
-void InitQ(MyQueue * q)
-{
-    q->front = NULL;
-    q->rear = NULL;
-}
-
-void PushQ(MyQueue *q, int data)
-{
-    Node * n = (Node*)malloc(sizeof(Node));
-    n->data = data;
-    
-    if(q->front == NULL)
-    {
-        q->front = n;
-        q->rear = n;
-        q->front->next = NULL;
-        q->rear->next = NULL;
-    }
-    else
-    {
-        q->rear->next = n;
-        q->rear = n;
-    }
-}
-
-int PopQ(MyQueue*q)
-{
-    if(q->front == NULL)
-    {
-        return -1;
-    }
-    Node* temp = q->front;
-    int data = q->front->data;
-    
-    q->front = q->front->next;
-    
-    free(temp);
-    return data;
-}
-
-int SizeQ(MyQueue *q)
-{
-    int num=0;
-    Node* temp = q->front;
-    
-    while(q->front != NULL)
-    {
-        num++;
-        q->front = q->front->next;
-    }
-    q->front = temp;
-    return num;
-}
-
-int IsEmpty(MyQueue * q)
-{
-    if(q->front == NULL)
-    {
-        return 1;
-    }
-    else
-        return 0;
-}
-
-void PrintFront(MyQueue *q)
-{
-    if(q->front == NULL)
-        cout << -1 << 'n';
-    else
-        cout << q->front->data << '\n';
-}
-
-void PrintBack(MyQueue *q)
-{
-    if(q->front == NULL)
-        cout << -1 << 'n';
-    else
-        cout << q->rear->data << '\n';
-}
 
 int main(void)
 {
@@ -109,49 +21,65 @@ int main(void)
     
     int n;
     string command;
-    int num, result;
-    
-    MyQueue q;
-    InitQ(&q);
+    int num;
+    int size;
     
     cin >> n;
     
-    for(int i = 0; i<n; i++)
+    for(int i =0; i<n; i++)
     {
         cin >> command;
         
+        size = tail - head;
         if(command == "push")
         {
             cin >> num;
-            PushQ(&q, num);
+            myqueue[tail++] = num;
         }
         else if(command == "pop")
         {
-            result = PopQ(&q);
-            cout << result << '\n';
+            if(size == 0)
+            {
+                cout << -1 << '\n';
+            }
+            else
+            {
+                cout << myqueue[head++] << '\n';
+            }
         }
         else if(command == "size")
         {
-            result = SizeQ(&q);
-            cout << result << '\n';
+            cout << size << '\n';
         }
-        
         else if(command == "empty")
         {
-            result = IsEmpty(&q);
-            cout << result << '\n';
+            if(size == 0)
+                cout << 1 << '\n';
+            else
+                cout << 0 << '\n';
         }
-        
         else if(command == "front")
         {
-            PrintFront(&q);
+            if(size == 0)
+            {
+                cout << -1 << '\n';
+            }
+            else
+            {
+                cout << myqueue[head] << '\n';
+            }
         }
-        
-        else if(command == "back")
+        else
         {
-            PrintBack(&q);
+            if(size == 0)
+            {
+                cout << -1 << '\n';
+            }
+            else
+            {
+                cout << myqueue[tail-1] << '\n';
+            }
         }
     }
-    
     return 0;
 }

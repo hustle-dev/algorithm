@@ -3,7 +3,8 @@
 using namespace std;
 
 int myqueue[10001];
-int front, rear = 0;
+int head, tail = 0;
+
 
 int main(void)
 {
@@ -11,32 +12,31 @@ int main(void)
     cin.tie(0);
     
     int n;
-    int num;
     string command;
+    int num;
     int size;
     
     cin >> n;
     
-    for(int i = 0; i<n; i++)
+    for(int i =0; i<n; i++)
     {
         cin >> command;
         
+        size = tail - head;
         if(command == "push")
         {
             cin >> num;
-            myqueue[rear] = num;
-            rear++;
-            size = rear-front;
+            myqueue[tail++] = num;
         }
         else if(command == "pop")
         {
             if(size == 0)
+            {
                 cout << -1 << '\n';
+            }
             else
             {
-                cout << myqueue[front] << '\n';
-                front++;
-                size = rear-front;
+                cout << myqueue[head++] << '\n';
             }
         }
         else if(command == "size")
@@ -46,9 +46,7 @@ int main(void)
         else if(command == "empty")
         {
             if(size == 0)
-            {
                 cout << 1 << '\n';
-            }
             else
                 cout << 0 << '\n';
         }
@@ -59,16 +57,20 @@ int main(void)
                 cout << -1 << '\n';
             }
             else
-                cout << myqueue[front] << '\n';
+            {
+                cout << myqueue[head] << '\n';
+            }
         }
-        else if(command == "back")
+        else
         {
             if(size == 0)
             {
                 cout << -1 << '\n';
             }
             else
-                cout << myqueue[rear-1] << '\n';
+            {
+                cout << myqueue[tail-1] << '\n';
+            }
         }
     }
     return 0;
