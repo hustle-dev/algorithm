@@ -5,3 +5,48 @@
   Created by Lee JeongMin on 2021/02/19.
   
 */
+
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+typedef struct pnt
+{
+    int xpos;
+    int ypos;
+} mypoint;
+
+bool comp(const mypoint& p1, const mypoint& p2)
+{
+    if(p1.xpos == p2.xpos)
+        return p1.ypos < p2.ypos;
+    else
+        return p1.xpos < p2.xpos;
+}
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int n;
+    
+    cin >> n;
+    
+    mypoint p[n];
+    
+    for(int i=0; i<n; i++)
+    {
+        cin >> p[i].xpos >> p[i].ypos;
+    }
+    
+    sort(p, p+n, comp);
+    
+    for(int i =0; i<n; i++)
+    {
+        cout << p[i].xpos << ' ' << p[i].ypos << '\n';
+    }
+    
+    return 0;
+}

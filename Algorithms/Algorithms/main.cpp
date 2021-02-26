@@ -1,9 +1,7 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
-
-int myqueue[10001];
-int head, tail = 0;
 
 
 int main(void)
@@ -11,67 +9,16 @@ int main(void)
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int n;
-    string command;
-    int num;
-    int size;
+    int n, k;
     
-    cin >> n;
+    cin >> n >> k;
     
-    for(int i =0; i<n; i++)
+    vector<int> v1;
+    
+    for(int i = 0; i<n; i++)
     {
-        cin >> command;
-        
-        size = tail - head;
-        if(command == "push")
-        {
-            cin >> num;
-            myqueue[tail++] = num;
-        }
-        else if(command == "pop")
-        {
-            if(size == 0)
-            {
-                cout << -1 << '\n';
-            }
-            else
-            {
-                cout << myqueue[head++] << '\n';
-            }
-        }
-        else if(command == "size")
-        {
-            cout << size << '\n';
-        }
-        else if(command == "empty")
-        {
-            if(size == 0)
-                cout << 1 << '\n';
-            else
-                cout << 0 << '\n';
-        }
-        else if(command == "front")
-        {
-            if(size == 0)
-            {
-                cout << -1 << '\n';
-            }
-            else
-            {
-                cout << myqueue[head] << '\n';
-            }
-        }
-        else
-        {
-            if(size == 0)
-            {
-                cout << -1 << '\n';
-            }
-            else
-            {
-                cout << myqueue[tail-1] << '\n';
-            }
-        }
+        v1.push_back(i+1);
     }
-    return 0;
+    
+    
 }
