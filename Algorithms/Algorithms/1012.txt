@@ -1,3 +1,12 @@
+/* 
+  1012.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/03/01.
+  
+*/
+
+
 #include <iostream>
 #include <cstring>
 
