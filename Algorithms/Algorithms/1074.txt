@@ -1,3 +1,11 @@
+/* 
+  1074.txt
+  Algorithms
+
+  Created by Lee JeongMin on 2021/03/02.
+  
+*/
+
 #include <iostream>
 
 using namespace std;
