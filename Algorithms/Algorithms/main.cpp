@@ -1,39 +1,27 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-int N, r, c;
-int cnt;
-
-void zarr(int N, int y, int x)
-{
-    if(r == y && c == x)
-    {
-        cout << cnt << '\n';
-        return;
-    }
-    
-    if(r<y+N && r>=y && x<=c && c<x+N)
-    {
-        zarr(N/2, y, x);
-        zarr(N/2, y, x+N/2);
-        zarr(N/2, y+N/2, x);
-        zarr(N/2, y+N/2, x+N/2);
-    }
-    else
-    {
-        cnt += N*N;
-    }
-    
-}
 
 int main(void)
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    cin >> N >> r >> c;
+    int N;
     
-    zarr((1 << N), 0, 0);
+    cin >> N;
+    
+    int dp[N];
+    dp[0] = dp[1] = 0;
+    for(int i = 2; i<=N; i++)
+    {
+        dp[i] = dp[i-1] + 1;
+        if(i%2 == 0) dp[i] = min(dp[i], dp[i/2] + 1);
+        if(i%3 == 0) dp[i] = min(dp[i], dp[i/3] + 1);
+    }
+    
+    cout << dp[N] << '\n';
     return 0;
 }
