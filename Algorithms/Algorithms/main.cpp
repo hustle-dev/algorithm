@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+int dp[1000001];
 int main(void)
 {
     ios::sync_with_stdio(0);
@@ -13,7 +13,6 @@ int main(void)
     
     cin >> N;
     
-    int dp[N];
     dp[0] = dp[1] = 0;
     for(int i = 2; i<=N; i++)
     {
