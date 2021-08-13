@@ -1,28 +1,18 @@
-function solution(n, lost, reserve) {
-    let answer = 0;
-    
-    answer += n-lost.length;
-
-    for(let i = 0; i<reserve.length; i++) {
-        if(lost.includes(reserve[i])) {
-            reserve.splice(i, i+1);
-            answer++;
-        }
-    }
-
-    for(let i = 0; i<reserve.length; i++) {
-        if(lost.includes(reserve[i]-1)) {
-            answer++;
-            lost.splice(lost.indexOf(reserve[i]-1), 1);
-        } else if(lost.includes(reserve[i]+1)) {
-            answer++;
-            lost.splice(lost.indexOf(reserve[i]-1), 1);
+function solution(n, m) {
+    let answer = [], tmp = [];
+    function DFS(L) {
+        if (L === m) {
+            answer.push(tmp.slice());
         } else {
-
+            for(let i = 1; i<=n; i++) { // i가 뽑는 숫자, n번을 돌음
+                tmp.push(i);
+                DFS(L+1); // 종료지점을 위해
+                tmp.pop();
+            }
         }
     }
-    
-    return answer;
+    DFS(0);
+    return answer; 
 }
 
-console.log(solution(15, [7 ,8, 11 , 12, 14], [1, 4, 5, 9, 10, 14]));
+console.log(solution(3, 2));
