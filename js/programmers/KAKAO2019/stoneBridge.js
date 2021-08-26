@@ -1,3 +1,5 @@
+// 프로그래머스에선 런타임 에러 발생 ㅜㅜ
+
 function solution(stones, k) {
     let answer = Number.MAX_SAFE_INTEGER;
     let lt = Math.min(...stones);
