@@ -1,42 +1,51 @@
-function solution(stones, k) {
-    let answer = Number.MAX_SAFE_INTEGER;
-    let lt = Math.min(...stones);
-    let rt = Math.max(...stones);
-    let tempArr = stones.slice();
+function solution(orders, course) {
+  let answer = [];
+  let sH = new Map();
+  let tempArr = [];
 
-    function count(mid) {
-        let tmp = tempArr.map(x => x - mid);
-        let cnt = 0;
-        let maxValue = 0;
+  function DFS(L, s, m, word) {
+    if (L === m) {
+      let joinStr = tempArr.join('');
+      sH.set(joinStr, sH.get(joinStr) + 1 || 1);
+    } else {
+      for (let i = s; i < word.length; i++) {
+        tempArr.push(word[i]);
+        DFS(L + 1, i + 1, m, word);
+        tempArr.pop();
+      }
+    }
+  }
 
-        for(let i = 0; i<tmp.length; i++) {
-            if(tmp[i] <= 0) {
-                cnt++;
-                let j = i+1;
-                while(tmp[j] <= 0 && j<tmp.length) {
-                    cnt++;
-                    j++;
-                }
-                maxValue = Math.max(maxValue, cnt);
-                cnt = 0;
-            }
-        }
-
-        return maxValue;
+  for (let i = 0; i < course.length; i++) {
+    let totalArr = [];
+    let temp = orders.filter(x => {
+      if (x.length > course[i]) {
+        return x;
+      } else if (x.length === course[i]) {
+        x.split('').sort().join('');
+        totalArr.push(x);
+      }
+    });
+    sH.clear();
+    for (let j = 0; j < totalArr.length; j++) {
+      sH.set(totalArr[j], sH.get(totalArr[j]) + 1 || 1);
+    }
+    for (let j = 0; j < temp.length; j++) {
+      let word = temp[j].split('').sort();
+      DFS(0, 0, course[i], word);
     }
 
-    while(lt <= rt) {
-        let mid = parseInt((lt + rt)/2);
-        
-        if(count(mid) >= k) {
-            answer = mid;
-            rt = mid -1;
-        } else {
-            lt = mid +1;
-        }
-    }
+    let max = Math.max(...sH.values());
+    console.log(sH);
 
-    return answer;
+    for (let [a, b] of sH) {
+      if (max === b && b > 1) {
+        answer.push(a);
+      }
+    }
+  }
+
+  return answer.sort();
 }
 
-console.log(solution([1, 5, 1, 3], 2));
+console.log(solution(['ABCD', 'ABCD', 'ABCD'], [2, 3, 4]));
