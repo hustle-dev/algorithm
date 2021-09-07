@@ -24,5 +24,3 @@ function solution(citations) {
 
   return max;
 }
-
-console.log(solution([0, 0, 0, 0, 0]));
