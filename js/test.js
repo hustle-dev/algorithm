@@ -1,17 +1,7 @@
-function solution(nums, k) {
-  const answer = [];
-  const stack = [];
+function solution(nums, m) {
+  let answer = 0;
 
-  for (let i = 0; i < k - 1; i++) {
-    stack.push(nums[i]);
-  }
-
-  for (let i = k - 1; i < nums.length; i++) {
-    stack.push(nums[i]);
-    answer.push(Math.min(...stack));
-    stack.shift();
-  }
   return answer;
 }
 
-console.log(solution([11, 12, 15, 20, 25, 10, 20, 13, 15, 19], 3));
+console.log(solution([1, 2, 3, -3, 1, 2], 3));
