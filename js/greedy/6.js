@@ -1,3 +1,36 @@
+function solution(nums) {
+  let answer = 0;
+  const arr = [];
+  nums.sort((a, b) => {
+    if (a[1] === b[1]) return b[0] - a[0];
+    return b[1] - a[1];
+  });
+
+  const maxD = nums[0][1];
+
+  for (let i = maxD; i >= 1; i--) {
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[j][1] === i) arr.push(nums[j][0]);
+    }
+    const maxV = Math.max(...arr);
+    answer += maxV;
+    arr.splice(arr.indexOf(maxV), 1);
+  }
+
+  return answer;
+}
+
+console.log(
+  solution([
+    [50, 2],
+    [40, 2],
+    [20, 1],
+    [10, 1],
+  ])
+);
+
+// ----------- MaxHeap 사용 코드---------------------
+
 class MaxHeap {
   constructor() {
     this.heap = [];
