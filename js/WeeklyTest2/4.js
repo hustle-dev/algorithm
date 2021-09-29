@@ -4,11 +4,8 @@ function solution(s) {
   while (Q.size) {
     const next = new Set();
     for (let x of Q) {
-      console.log(x);
-      console.log([...Q]);
       if (isValid(x)) {
         let answer = [...Q].filter(isValid);
-        console.log('answer:' + answer);
         return answer[0] === '' ? 0 : answer.length;
       }
       for (let i = 0; i < x.length; i++) {
