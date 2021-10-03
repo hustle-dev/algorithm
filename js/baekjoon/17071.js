@@ -1,4 +1,4 @@
-const input = require('fs').readFileSync('./test.txt').toString().split(' ');
+const input = require('fs').readFileSync('/dev/stdin').toString().split(' ');
 
 const s = Number(input[0]);
 let e = Number(input[1]);
