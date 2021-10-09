@@ -1,5 +1,5 @@
 const solution = (m, musicinfos) => {
-  let answer;
+  let answer = '';
   let time = 0;
   const melody = m.replace(/.#/g, match => match[0].toLowerCase());
 
@@ -24,7 +24,7 @@ const solution = (m, musicinfos) => {
     }
   });
 
-  return answer;
+  return answer === '' ? '(None)' : answer;
 };
 
 console.log(
