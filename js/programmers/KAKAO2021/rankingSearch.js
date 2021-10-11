@@ -1,8 +1,9 @@
+// 효율성 문제 코드
+
 const solution = (info, query) => {
   let answer = [];
 
   //   info.sort((a, b) => a.slice(-3) - b.slice(-3));
-  //   console.log(info);
 
   query.forEach(condition => {
     const [lang, role, career, food, score] = condition.replace(/and ?/g, '').split(' ');
@@ -18,13 +19,10 @@ const solution = (info, query) => {
         (food === '-' || food === food2) &&
         Number(score2) >= Number(score)
       ) {
-        // console.log(score2, score, score2 >= score);
-        // console.log(infoContent);
         count++;
       }
     });
-    // console.log(' ');
-    // console.log(count);
+
     answer = [...answer, count];
   });
 
