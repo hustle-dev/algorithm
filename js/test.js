@@ -1,53 +1,60 @@
-const solution = (info, query) => {
+const solution = files => {
   let answer = [];
 
-  //   info.sort((a, b) => a.slice(-3) - b.slice(-3));
-  //   console.log(info);
+  // head 기준 사전 정렬
 
-  query.forEach(condition => {
-    const [lang, role, career, food, score] = condition.replace(/and ?/g, '').split(' ');
-    let count = 0;
+  const temp = Array.from({ length: files.length }, () => Array());
 
-    info.forEach(infoContent => {
-      const [lang2, role2, career2, food2, score2] = infoContent.split(' ');
+  // console.log(temp);
 
-      if (
-        (lang === '-' || lang === lang2) &&
-        (role === '-' || role === role2) &&
-        (career === '-' || career === career2) &&
-        (food === '-' || food === food2) &&
-        Number(score2) >= Number(score)
-      ) {
-        // console.log(score2, score, score2 >= score);
-        // console.log(infoContent);
-        count++;
-      }
-    });
-    // console.log(' ');
-    // console.log(count);
-    answer = [...answer, count];
-  });
+  for (let i = 0; i < files.length; i++) {
+    temp[i].push(i);
+    files[i].replace(/[a-zA-Z-. ]+|[0-9]+/g, match => temp[i].push(match));
+    temp[i].push(files[i]);
+  }
+
+  console.log(temp);
+
+  temp.sort((a, b) =>
+    a[1].toLowerCase() > b[1].toLowerCase()
+      ? 1
+      : a[1].toLowerCase() < b[1].toLowerCase()
+      ? -1
+      : +a[2] > +b[2]
+      ? 1
+      : +a[2] < +b[2]
+      ? -1
+      : a[0] - b[0]
+  );
+
+  for (let i = 0; i < temp.length; i++) {
+    answer.push(temp[i].join(''));
+  }
+
+  answer = temp.map(file => file[4]);
 
   return answer;
 };
 
-console.log(
-  solution(
-    [
-      'java backend junior pizza 150',
-      'python frontend senior chicken 210',
-      'python frontend senior chicken 150',
-      'cpp backend senior pizza 260',
-      'java backend junior chicken 80',
-      'python backend senior chicken 50',
-    ],
-    [
-      'java and backend and junior and pizza 100',
-      'python and frontend and senior and chicken 200',
-      'cpp and - and senior and pizza 250',
-      '- and backend and senior and - 150',
-      '- and - and - and chicken 100',
-      '- and - and - and - 150',
-    ]
-  )
-);
+// console.log(solution(['img12.png', 'img10.png', 'img02.png', 'img1.png', 'IMG01.GIF', 'img2.JPG']));
+// console.log(
+//   solution(['F-5 Freedom Fighter', 'B-50 Superfortress', 'A-10 Thunderbolt II', 'F-14 Tomcat'])
+// );
+
+// console.log(solution(['MUZI01.zip', 'muzi1.png']));
+// console.log(solution(['ver-10.zip', 'ver-9.zip']));
+
+// console.log(solution(['MUZI01.zip', 'muzi1.png', 'muzi000001.png', 'muzi10000.png']));
+
+// console.log(
+//   solution([
+//     'muzi10000.pog',
+//     'muzi000001.png',
+//     'MUZI01.zip',
+//     'muzi1.png',
+//     'muzi000001.png',
+//     'muzi10000.png',
+//   ])
+// );
+
+console.log(solution(['F 15', 'F 16', 'F 10']));
