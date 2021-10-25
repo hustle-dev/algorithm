@@ -1,3 +1,7 @@
+/**
+ * https://programmers.co.kr/learn/courses/30/lessons/17677
+ */
+
 const solution = (str1, str2) => {
   const str1Lower = str1.toLowerCase();
   const str2Lower = str2.toLowerCase();
