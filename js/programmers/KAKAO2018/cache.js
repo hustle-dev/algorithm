@@ -1,3 +1,7 @@
+/**
+ * https://programmers.co.kr/learn/courses/30/lessons/17680
+ */
+
 const solution = (cacheSize, cities) => {
   let answer = 0;
   let queue = [];
