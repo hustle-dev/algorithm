@@ -1,18 +1,18 @@
+/**
+ * https://leetcode.com/problems/restore-ip-addresses/submissions/
+ * @param {string} s
+ * @returns {string[]}
+ */
 const restoreIpAddresses = s => {
   const answer = [];
   const validIp = s.replace(/[^0-9]/g, '');
   let changeString = '';
   const temp = [];
   const stageString = [];
-
   stageString.push(validIp);
-
-  // console.log(stageString);
 
   function DFS(L) {
     if (L === 3) {
-      // console.log(stageString);
-      // console.log(temp);
       if (stageString[3].length > 3) {
         stageString.pop();
         return;
@@ -25,29 +25,21 @@ const restoreIpAddresses = s => {
         stageString.pop();
         return;
       }
-
-      // console.log(temp);
       temp.push(stageString[3]);
-      // console.log(temp);
       const ipFormat = [...temp].map(el => +el).join('.');
 
       answer.push(ipFormat);
-      // console.log(answer);
       temp.pop();
       stageString.pop();
     } else {
       for (let i = 1; i <= 3; i++) {
-        // console.log('stageString', stageString);
         changeString = stageString[L];
-        // console.log('changeString', changeString, L);
         const sliceNum = changeString.slice(0, i);
         if ((sliceNum.length !== 1 && sliceNum[0] === '0') || +sliceNum > 255 || sliceNum === '') {
-          // console.log('hi');
           stageString.pop();
           break;
         }
         temp.push(sliceNum);
-        // console.log('temp', temp);
         stageString.push(changeString.slice(i));
         DFS(L + 1);
         temp.pop();
@@ -59,8 +51,6 @@ const restoreIpAddresses = s => {
   }
 
   DFS(0);
-
-  // console.log(answer);
   return answer;
 };
 
