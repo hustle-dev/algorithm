@@ -8,7 +8,7 @@ const solution = (nums, m) => {
     }
   }
 
-  console.log(dp);
+  return dp[m];
 };
 
 console.log(solution([2, 3, 5], 10));

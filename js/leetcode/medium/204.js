@@ -1,3 +1,9 @@
+/**
+ * Count Primes
+ * https://leetcode.com/problems/count-primes/
+ * @param {number} n
+ * @returns
+ */
 function solution(n) {
   let answer = 0;
   const ch = Array(n).fill(0);

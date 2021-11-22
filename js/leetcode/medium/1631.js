@@ -1,3 +1,9 @@
+/**
+ * Path With Minimum Effort
+ * https://leetcode.com/problems/path-with-minimum-effort/
+ * @param {number[][]} heights
+ * @return {number}
+ */
 function solution(heights) {
   const dx = [-1, 0, 1, 0];
   const dy = [0, -1, 0, 1];
