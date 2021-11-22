@@ -1,18 +1,14 @@
-function solution(s1, s2) {
-  const N = s1.length;
-  const M = s2.length;
-  const dp = Array.from({ length: N + 1 }, () => Array(M + 1).fill(0));
+const solution = (s1, s2) => {
+  const dp = Array.from({ length: s1.length + 1 }, () => Array(s2.length + 1).fill(0));
 
-  for (let i = 0; i < N; i++) {
-    for (let j = 0; j < M; j++) {
-      if (s1[i] === s2[j]) {
-        dp[i + 1][j + 1] = dp[i][j] + 1;
-      } else {
-        dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i + 1][j]);
-      }
+  for (let i = 1; i <= s1.length; i++) {
+    for (let j = 1; j <= s2.length; j++) {
+      if (s1[i - 1] === s2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+      else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
     }
   }
-  return dp[N][M];
-}
+
+  return dp[s1.length][s2.length];
+};
 
 console.log(solution('acbehf', 'abefc'));

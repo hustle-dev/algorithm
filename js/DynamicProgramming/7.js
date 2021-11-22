@@ -1,16 +1,16 @@
-function solution(nums, m) {
-  const dp = Array.from({ length: m + 1 }, () => 0);
+const solution = (nums, m) => {
+  const dp = Array(m + 1).fill(0);
 
   for (let i = 0; i < nums.length; i++) {
-    const score = nums[i][0];
-    const time = nums[i][1];
-    for (let j = m; j >= time; j--) {
-      dp[j] = Math.max(dp[j], dp[j - time] + score);
+    let times = nums[i][1];
+    let score = nums[i][0];
+    for (let j = m; j >= times; j--) {
+      dp[j] = Math.max(dp[j], dp[j - times] + score);
     }
   }
 
   return dp[m];
-}
+};
 
 console.log(
   solution(

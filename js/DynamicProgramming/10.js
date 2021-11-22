@@ -1,18 +1,19 @@
-function solution(t, coins) {
-  const dp = Array.from({ length: t + 1 }, () => 0);
-
+const solution = (t, coins) => {
+  const dp = Array(t + 1).fill(0);
   dp[0] = 1;
-  for (let [p, n] of coins) {
-    for (let i = t; i >= 1; i--) {
-      for (let k = 1; k <= n; k++) {
-        if (i - p * k < 0) break;
-        dp[i] += dp[i - p * k];
+
+  for (let i = 0; i < coins.length; i++) {
+    let [price, num] = coins[i];
+    for (let j = t; j >= 0; j--) {
+      for (let k = 1; k <= num; k++) {
+        if (j - price * k < 0) break;
+        dp[j] += dp[j - price * k];
       }
     }
   }
-  console.log(dp);
+
   return dp[t];
-}
+};
 
 console.log(
   solution(20, [

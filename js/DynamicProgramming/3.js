@@ -1,16 +1,21 @@
-function solution(nums) {
-  const dp = Array.from({ length: nums.length }, () => 0);
-
+const solution = nums => {
+  let answer = 0;
+  const dp = Array(nums.length).fill(0);
   dp[0] = 1;
-  for (let i = 1; i < nums.length; i++) {
-    let maxV = 1;
+
+  for (let i = 0; i < nums.length; i++) {
+    let max = 0;
     for (let j = i - 1; j >= 0; j--) {
-      if (nums[j] < nums[i] && dp[j] + 1 > maxV) maxV = dp[j] + 1;
+      if (nums[i] > nums[j] && dp[j] > max) {
+        max = dp[j];
+      }
     }
-    dp[i] = maxV;
+    dp[i] = max + 1;
+    answer = Math.max(answer, dp[i]);
   }
 
-  return Math.max(...dp);
-}
+  return answer;
+};
 
 console.log(solution([5, 3, 7, 8, 6, 2, 9, 4]));
+console.log(solution([2, 7, 5, 8, 6, 4, 7, 12, 3]));
