@@ -1,6 +1,6 @@
 /**
- * Generate Parentheses
- * https://leetcode.com/problems/generate-parentheses/
+ * @title Generate Parentheses
+ * @link https://leetcode.com/problems/generate-parentheses/
  * @param {number} n
  * @return {string[]}
  */

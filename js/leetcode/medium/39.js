@@ -1,6 +1,6 @@
 /**
- * Combination Sum
- * https://leetcode.com/problems/combination-sum/
+ * @title Combination Sum
+ * @link https://leetcode.com/problems/combination-sum/
  * @param {number[]} candidates
  * @param {number} target
  * @return {number[][]}

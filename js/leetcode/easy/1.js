@@ -1,6 +1,6 @@
 /**
- * Two Sum
- * https://leetcode.com/problems/two-sum/submissions/
+ * @title Two Sum
+ * @link https://leetcode.com/problems/two-sum/submissions/
  * @param {array} nums
  * @param {number} target
  * @returns

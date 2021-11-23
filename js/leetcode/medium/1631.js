@@ -1,6 +1,6 @@
 /**
- * Path With Minimum Effort
- * https://leetcode.com/problems/path-with-minimum-effort/
+ * @title Path With Minimum Effort
+ * @link https://leetcode.com/problems/path-with-minimum-effort/
  * @param {number[][]} heights
  * @return {number}
  */

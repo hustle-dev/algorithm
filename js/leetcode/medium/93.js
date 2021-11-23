@@ -1,6 +1,6 @@
 /**
- * Restore IP Addresses
- * https://leetcode.com/problems/restore-ip-addresses/submissions/
+ * @title Restore IP Addresses
+ * @link https://leetcode.com/problems/restore-ip-addresses/submissions/
  * @param {string} s
  * @returns {string[]}
  */

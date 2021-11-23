@@ -1,6 +1,6 @@
 /**
- * Maximum Product Subarray
- * https://leetcode.com/problems/maximum-product-subarray/
+ * @title Maximum Product Subarray
+ * @link https://leetcode.com/problems/maximum-product-subarray/
  * @param {array} nums
  * @returns
  */

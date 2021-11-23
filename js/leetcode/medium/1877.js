@@ -1,6 +1,6 @@
 /**
- * Minimize Maximum Pair Sum in Array
- * https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
+ * @title Minimize Maximum Pair Sum in Array
+ * @link https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/
  * @param {number[]} nums
  * @return {number}
  */

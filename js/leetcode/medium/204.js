@@ -1,6 +1,6 @@
 /**
- * Count Primes
- * https://leetcode.com/problems/count-primes/
+ * @title Count Primes
+ * @link https://leetcode.com/problems/count-primes/
  * @param {number} n
  * @returns
  */

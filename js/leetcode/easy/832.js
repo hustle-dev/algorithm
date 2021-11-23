@@ -1,6 +1,6 @@
 /**
- * Flipping an Image
- * https://leetcode.com/problems/flipping-an-image/
+ * @title Flipping an Image
+ * @link https://leetcode.com/problems/flipping-an-image/
  * @param {number[][]} image
  * @returns {number[][]}
  */
