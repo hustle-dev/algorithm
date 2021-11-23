@@ -1,11 +1,11 @@
-function solution(nums, m) {
-  let answer = [];
-  let temp = [];
-  const ch = Array.from({ length: nums.length }, () => 0);
+const solution = (nums, m) => {
+  const answer = [];
+  const ch = Array(nums.length).fill(0);
+  const temp = [];
 
   function DFS(L) {
     if (L === m) {
-      answer.push(temp.slice());
+      answer.push([...temp]);
     } else {
       for (let i = 0; i < nums.length; i++) {
         if (ch[i] === 0) {
@@ -21,6 +21,6 @@ function solution(nums, m) {
 
   DFS(0);
   return answer;
-}
+};
 
 console.log(solution([3, 6, 9], 2));

@@ -1,20 +1,22 @@
-function solution(n) {
+const solution = n => {
   const answer = [];
   const temp = [];
 
   function DFS(L) {
-    if (L === n) {
-      if (temp.length !== 0) answer.push(temp.slice());
+    if (L === n + 1) {
+      if (temp.length !== 0) {
+        answer.push([...temp]);
+      }
     } else {
-      temp.push(L + 1);
+      temp.push(L);
       DFS(L + 1);
       temp.pop();
       DFS(L + 1);
     }
   }
 
-  DFS(0);
+  DFS(1);
   return answer;
-}
+};
 
 console.log(solution(3));

@@ -1,10 +1,10 @@
-function solution(n, m) {
-  let answer = [];
-  let temp = [];
+const solution = (n, m) => {
+  const answer = [];
+  const temp = [];
 
   function DFS(L) {
-    if (L === m + 1) {
-      answer.push(temp.slice());
+    if (L === m) {
+      answer.push([...temp]);
     } else {
       for (let i = 1; i <= n; i++) {
         temp.push(i);
@@ -14,8 +14,9 @@ function solution(n, m) {
     }
   }
 
-  DFS(1);
+  DFS(0);
+
   return answer;
-}
+};
 
 console.log(solution(3, 2));
