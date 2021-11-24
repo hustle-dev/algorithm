@@ -48,7 +48,6 @@ const solution = (n, relations) => {
   const answer = [];
   const result = Array(n + 1).fill(0);
   const toy = Array.from({ length: n + 1 }, () => Array());
-  const check = Array(n + 1).fill(0);
 
   for (const [a, b, cost] of relations) {
     toy[a].push([b, cost]);
