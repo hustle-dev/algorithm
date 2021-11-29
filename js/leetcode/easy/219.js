@@ -1,4 +1,6 @@
 /**
+ * Contains Duplicate II
+ * https://leetcode.com/problems/contains-duplicate-ii/
  * @param {number[]} nums
  * @param {number} k
  * @return {boolean}
