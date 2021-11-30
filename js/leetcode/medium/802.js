@@ -1,4 +1,6 @@
 /**
+ * Find Eventual Safe States
+ * https://leetcode.com/problems/find-eventual-safe-states/
  * @param {number[][]} graph
  * @return {number[]}
  */
@@ -34,5 +36,3 @@ var eventualSafeNodes = function (graph) {
 
   return answer;
 };
-
-console.log(eventualSafeNodes([[1, 2], [2, 3], [5], [0], [5], [], []]));
