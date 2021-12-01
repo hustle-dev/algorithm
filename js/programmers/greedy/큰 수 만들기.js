@@ -6,6 +6,10 @@ const solution = (number, k) => {
 
   let cnt = 0;
   for (let i = 1; i < number.length; i++) {
+    while (stack.length && stack[stack.length - 1] < number[i] && cnt < k) {
+      cnt++;
+      stack.pop();
+    }
     if (cnt === k) {
       while (i < number.length) {
         stack.push(number[i]);
@@ -13,13 +17,11 @@ const solution = (number, k) => {
       }
       break;
     }
-    while (stack.length && Number(stack[stack.length - 1]) < Number(number[i])) {
-      if (cnt === k) break;
-      cnt++;
-      stack.pop();
-    }
     stack.push(number[i]);
   }
+
+  // 만약 k개 만큼 줄어들지 않았다면 stack에서 제거해주어야함!
+  stack.splice(number.length - k, k);
 
   answer = stack.join('');
   return answer;
