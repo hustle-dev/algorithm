@@ -6,46 +6,40 @@
  * @return {string}
  */
 var minWindow = function (s, t) {
-  const sH = new Map();
+  const m = new Map();
 
-  for (const char of t) {
-    sH.set(char, sH.get(char) + 1 || 1);
+  for (const c of t) {
+    m.set(c, m.get(c) + 1 || 1);
   }
 
   let lt = 0;
-  let minLt = null;
-  let minRt = null;
-  let uniqueChars = sH.size;
-
+  let start = null;
+  let end = null;
+  let uniqueC = m.size;
   for (let rt = 0; rt < s.length; rt++) {
-    if (sH.has(s[rt])) {
-      sH.set(s[rt], sH.get(s[rt]) - 1);
-      if (sH.get(s[rt]) === 0) {
-        uniqueChars -= 1;
+    if (m.has(s[rt])) {
+      m.set(s[rt], m.get(s[rt]) - 1);
+
+      if (m.get(s[rt]) === 0) {
+        uniqueC -= 1;
       }
     }
 
-    while (uniqueChars === 0 && lt <= rt) {
-      if (minLt === null || minRt - minLt > rt - lt) {
-        minLt = lt;
-        minRt = rt;
+    while (uniqueC === 0 && lt <= rt) {
+      if (end - start > rt - lt || start === null) {
+        start = lt;
+        end = rt;
       }
+      if (m.has(s[lt])) {
+        m.set(s[lt], m.get(s[lt]) + 1);
 
-      if (sH.has(s[lt])) {
-        sH.set(s[lt], sH.get(s[lt]) + 1);
-
-        if (sH.get(s[lt]) === 1) {
-          uniqueChars += 1;
+        if (m.get(s[lt]) === 1) {
+          uniqueC++;
         }
       }
       lt++;
     }
   }
 
-  return minLt === null ? '' : s.substring(minLt, minRt + 1);
+  return start === null ? '' : s.substring(start, end + 1);
 };
-
-console.log(minWindow('ADOBECODEBANC', 'ABC'));
-console.log(minWindow('a', 'a'));
-console.log(minWindow('a', 'aa'));
-console.log(minWindow('bdab', 'ab'));
