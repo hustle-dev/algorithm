@@ -1,4 +1,11 @@
-const solution = (nums, k) => {
+/**
+ * Subarrays with K Different Integers
+ * https://leetcode.com/problems/subarrays-with-k-different-integers/
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraysWithKDistinct = function (nums, k) {
   function atMost(K) {
     const m = new Map();
     let answer = 0;
@@ -23,6 +30,3 @@ const solution = (nums, k) => {
 
   return atMost(k) - atMost(k - 1);
 };
-
-console.log(solution([1, 2, 1, 2, 3], 2));
-console.log(solution([1, 2, 1, 3, 4], 3));
