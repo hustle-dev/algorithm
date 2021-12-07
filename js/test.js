@@ -1,42 +1,33 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[][]}
- */
-var fourSum = function (nums, target) {
-  nums.sort((a, b) => a - b);
-  const answer = [];
+const solution = (s, k) => {
+  const maxUnique = new Set(s).size;
+  let max = 0;
 
-  for (let a = 0; a < nums.length - 3; a++) {
-    for (let b = a + 1; b < nums.length - 2; b++) {
-      let c = b + 1;
-      let d = nums.length - 1;
+  for (let curUnique = 1; curUnique <= maxUnique; curUnique++) {
+    let lt = 0;
+    let m = new Map();
+    let atLeastK = 0;
+    let unique = 0;
+    for (let rt = 0; rt < s.length; rt++) {
+      m.set(s[rt], m.get(s[rt]) + 1 || 1);
 
-      while (c < d) {
-        const sum = nums[a] + nums[b] + nums[c] + nums[d];
-        if (sum === target) {
-          answer.push([nums[a], nums[b], nums[c], nums[d]]);
+      if (m.get(s[rt]) === 1) unique++;
+      if (m.get(s[rt]) === k) atLeastK++;
 
-          while (nums[c] === nums[c + 1]) c++;
-          while (nums[d] === nums[d - 1]) d--;
-
-          c++;
-          d--;
-        } else if (sum > target) {
-          while (nums[d] === nums[d - 1]) d--;
-          d--;
-        } else {
-          while (nums[c] === nums[c + 1]) c++;
-          c++;
-        }
+      while (unique > curUnique) {
+        m.set(s[lt], m.get(s[lt]) - 1);
+        if (m.get(s[lt]) === k - 1) atLeastK--;
+        if (m.get(s[lt]) === 0) unique--;
+        lt++;
       }
 
-      while (nums[b] === nums[b + 1]) b++;
+      if (unique === curUnique && unique === atLeastK) {
+        max = Math.max(max, rt - lt + 1);
+      }
     }
-    while (nums[a] === nums[a + 1]) a++;
   }
-  return answer;
+
+  return max;
 };
 
-console.log(fourSum([1, 0, -1, 0, -2, 2], 0));
-console.log(fourSum([2, 2, 2, 2, 2], 8));
+console.log(solution('aaabb', 3));
+console.log(solution('ababbc', 2));
