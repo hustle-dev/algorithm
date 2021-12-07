@@ -1,4 +1,6 @@
 /**
+ * Find Target Indices After Sorting Array
+ * https://leetcode.com/problems/find-target-indices-after-sorting-array/
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -17,5 +19,3 @@ var targetIndices = function (nums, target) {
   }
   return answer;
 };
-
-console.log(targetIndices([1, 2, 5, 2, 3], 2));
