@@ -69,13 +69,3 @@ const solution = grid => {
 
   return answer === Number.MAX_SAFE_INTEGER ? -1 : answer;
 };
-
-console.log(
-  solution([
-    [1, 0, 2, 0, 1],
-    [0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-  ])
-);
-console.log(solution([[1, 0]]));
-console.log(solution([[1]]));
