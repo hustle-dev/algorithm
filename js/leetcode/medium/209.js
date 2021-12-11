@@ -6,23 +6,17 @@
  * @return {number}
  */
 var minSubArrayLen = function (target, nums) {
-  let answer = 1000000000;
-  let sum = nums[0];
   let lt = 0;
+  let sum = 0;
+  let answer = 1000000;
 
-  if (sum >= target) answer = 1;
-
-  for (let rt = 1; rt < nums.length; rt++) {
+  for (let rt = 0; rt < nums.length; rt++) {
     sum += nums[rt];
-
-    if (sum >= target) answer = Math.min(answer, rt - lt + 1);
-
     while (sum >= target) {
-      sum -= nums[lt];
-      lt++;
       if (sum >= target) answer = Math.min(answer, rt - lt + 1);
+      sum -= nums[lt++];
     }
   }
 
-  return answer === 1000000000 ? 0 : answer;
+  return answer === 1000000 ? 0 : answer;
 };
