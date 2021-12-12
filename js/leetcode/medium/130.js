@@ -1,4 +1,10 @@
-const solution = board => {
+/**
+ * Surrounded Regions
+ * https://leetcode.com/problems/surrounded-regions/
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+var solve = function (board) {
   const M = board.length;
   const N = board[0].length;
   const dx = [-1, 0, 1, 0];
@@ -44,19 +50,3 @@ const solution = board => {
 
   return;
 };
-
-// console.log(
-//   solution([
-//     ['X', 'X', 'X', 'X'],
-//     ['X', 'O', 'O', 'X'],
-//     ['X', 'X', 'O', 'X'],
-//     ['X', 'O', 'X', 'X'],
-//   ])
-// );
-console.log(
-  solution([
-    ['O', 'O', 'O'],
-    ['O', 'O', 'O'],
-    ['O', 'O', 'O'],
-  ])
-);
