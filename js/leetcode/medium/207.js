@@ -1,4 +1,11 @@
-const solution = (numCourses, prerequisites) => {
+/**
+ * Course Schedule
+ * https://leetcode.com/problems/course-schedule/
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+var canFinish = function (numCourses, prerequisites) {
   const graph = Array.from({ length: numCourses }, () => Array());
   const indegree = new Array(numCourses).fill(0);
   const queue = [];
@@ -24,12 +31,3 @@ const solution = (numCourses, prerequisites) => {
 
   return numCourses === order.length;
 };
-
-console.log(solution(2, [[1, 0]]));
-
-console.log(
-  solution(2, [
-    [1, 0],
-    [0, 1],
-  ])
-);
