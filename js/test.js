@@ -1,35 +1,30 @@
-const solution = (numCourses, prerequisites) => {
-  const graph = Array.from({ length: numCourses }, () => Array());
-  const indegree = new Array(numCourses).fill(0);
-  const queue = [];
-  const order = [];
+// const solution = matrix => {
+//   const M = matrix.length;
+//   const N = matrix[0].length;
+//   const min = Math.min(M, N);
+//   let max = 0;
 
-  for (const [a, b] of prerequisites) {
-    indegree[a]++;
-    graph[b].push(a);
-  }
+//   for (let i = 0; i < M; i++) {
+//     for (let j = 0; j < N; j++) {
+//       if (matrix[i][j] === 1) {
+//         max = 1;
+//         break;
+//       }
+//     }
+//   }
 
-  for (let i = 0; i < indegree.length; i++) {
-    if (indegree[i] === 0) queue.push(i);
-  }
+//   for (let k = 2; k <= min; k++) {
+//     for (let i = 0; i <= M - k; i++) {
+//       for (let j = 0; j <= N - k; j++) {}
+//     }
+//   }
+// };
 
-  while (queue.length) {
-    const v = queue.shift();
-    for (const e of graph[v]) {
-      indegree[e]--;
-      if (indegree[e] === 0) queue.push(e);
-    }
-    order.push(v);
-  }
-
-  return numCourses === order.length;
-};
-
-console.log(solution(2, [[1, 0]]));
-
-console.log(
-  solution(2, [
-    [1, 0],
-    [0, 1],
-  ])
-);
+// console.log(
+//   solution([
+//     ['1', '0', '1', '0', '0'],
+//     ['1', '0', '1', '1', '1'],
+//     ['1', '1', '1', '1', '1'],
+//     ['1', '0', '0', '1', '0'],
+//   ])
+// );
