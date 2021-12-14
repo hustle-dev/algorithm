@@ -1,30 +1,33 @@
-// const solution = matrix => {
-//   const M = matrix.length;
-//   const N = matrix[0].length;
-//   const min = Math.min(M, N);
-//   let max = 0;
+const solution = s => {
+  const stack = [];
+  const answer = [];
+  const m = new Map();
+  for (const c of s) {
+    m.set(c, m.get(c) + 1 || 1);
+  }
 
-//   for (let i = 0; i < M; i++) {
-//     for (let j = 0; j < N; j++) {
-//       if (matrix[i][j] === 1) {
-//         max = 1;
-//         break;
-//       }
-//     }
-//   }
+  for (const c of s) {
+    while (
+      stack.length &&
+      c.charCodeAt() < stack[stack.length - 1].charCodeAt() &&
+      m.get(stack[stack.length - 1]) > 1
+    ) {
+      m.set(stack[stack.length - 1], m.get(stack[stack.length - 1]) - 1);
+      stack.pop();
+    }
+    stack.push(c);
+  }
 
-//   for (let k = 2; k <= min; k++) {
-//     for (let i = 0; i <= M - k; i++) {
-//       for (let j = 0; j <= N - k; j++) {}
-//     }
-//   }
-// };
+  for (let i = stack.length - 1; i >= 0; i--) {
+    if (m.get(stack[i]) > 1) {
+      m.set(stack[i], m.get(stack[i]) - 1);
+      continue;
+    }
+    answer.push(stack[i]);
+  }
 
-// console.log(
-//   solution([
-//     ['1', '0', '1', '0', '0'],
-//     ['1', '0', '1', '1', '1'],
-//     ['1', '1', '1', '1', '1'],
-//     ['1', '0', '0', '1', '0'],
-//   ])
-// );
+  return answer.reverse().join('');
+};
+
+console.log(solution('bcabc'));
+console.log(solution('cbacdcbc'));
