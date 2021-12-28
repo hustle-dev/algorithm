@@ -1,4 +1,9 @@
-const solution = (cardPoints, k) => {
+/**
+ * @param {number[]} cardPoints
+ * @param {number} k
+ * @return {number}
+ */
+var maxScore = function (cardPoints, k) {
   const total = cardPoints.reduce((acc, cur) => acc + cur, 0);
   if (cardPoints.length === k) return total;
 
@@ -22,7 +27,3 @@ const solution = (cardPoints, k) => {
 
   return total - minSum;
 };
-
-console.log(solution([1, 2, 3, 4, 5, 6, 1], 3));
-console.log(solution([9, 7, 7, 9, 7, 7, 9], 7));
-console.log(solution([2, 2, 2], 2));
