@@ -1,30 +1,22 @@
-function solution(nums) {
+const solution = nums => {
   let answer = 'YES';
-  let i;
+  const N = nums.length;
 
-  for (i = 0; i < nums.length - 1; i++) {
-    if (nums[i] < nums[i + 1]) {
-      continue;
-    } else {
-      break;
-    }
+  let i = 0;
+  while (i < N) {
+    if (nums[i] >= nums[i + 1]) break;
+    i++;
   }
 
-  for (i; i < nums.length - 1; i++) {
-    if (nums[i] > nums[i + 1]) {
-      continue;
-    } else {
-      break;
-    }
-  }
+  if (i === 0 || i === N) return 'NO';
 
-  if (i === nums.length - 1) {
-    answer = 'YES';
-  } else {
-    answer = 'NO';
+  for (i; i < N - 1; i++) {
+    if (nums[i] < nums[i + 1]) return 'NO';
   }
 
   return answer;
-}
+};
 
-console.log(solution([1, 2, 3, 4, 5, 4, 3, 2, 2]));
+console.log(solution([1, 2, 3, 4, 5, 3, 1]));
+console.log(solution([1, 3, 4, 5, 5, 6, 4, 3]));
+console.log(solution([1, 2, 3, 4, 5]));

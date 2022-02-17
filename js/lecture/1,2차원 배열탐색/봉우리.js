@@ -1,26 +1,32 @@
-function solution(nums) {
-  let answer = 0;
+const solution = nums => {
+  const dx = [-1, 0, 1, 0];
+  const dy = [0, -1, 0, 1];
   const N = nums.length;
-  let flag = true;
-  const dy = [-1, 0, 1, 0];
-  const dx = [0, -1, 0, 1];
+  const M = nums[0].length;
 
+  let sum = 0;
   for (let i = 0; i < N; i++) {
-    for (let j = 0; j < N; j++) {
+    for (let j = 0; j < M; j++) {
+      const cur = nums[i][j];
+      let flag = true;
       for (let k = 0; k < 4; k++) {
-        let nx = i + dx[k];
-        let ny = j + dy[k];
-        if (nx >= 0 && ny >= 0 && nx < N && ny < N && nums[i][j] <= nums[nx][ny]) {
-          flag = false;
-          break;
+        const nx = i + dy[k];
+        const ny = j + dx[k];
+        if (nx >= 0 && ny >= 0 && nx < N && ny < M) {
+          if (cur < nums[nx][ny]) {
+            flag = false;
+            break;
+          }
         }
       }
-      if (flag) answer += 1;
-      flag = true;
+      if (flag) {
+        sum += 1;
+      }
     }
   }
-  return answer;
-}
+
+  return sum;
+};
 
 console.log(
   solution([

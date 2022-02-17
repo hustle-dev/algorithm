@@ -1,26 +1,23 @@
-function solution(nums) {
-  const answer = [];
-  const newArray = [];
-  let count = 0;
+const solution = nums => {
+  const dp = new Array(nums.length).fill(0);
+  let answer = [];
 
   for (let i = 0; i < nums.length; i++) {
+    let sum = 0;
     for (let j = 0; j < nums[i].length; j++) {
-      if (nums[i][j] === 1) {
-        count += 1;
-      }
+      if (nums[i][j] === 1) sum += 1;
     }
-    newArray.push([i, count]);
-    count = 0;
+    dp[i] = [sum, i];
   }
 
-  newArray
-    .sort((a, b) => a[1] - b[1])
-    .forEach(x => {
-      answer.push(x[0]);
-    });
+  dp.sort((a, b) => a[0] - b[0]);
+
+  for (const [v, i] of dp) {
+    answer.push(i);
+  }
 
   return answer;
-}
+};
 
 console.log(
   solution([

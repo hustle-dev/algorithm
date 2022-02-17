@@ -1,22 +1,17 @@
-function solution(nums) {
+const solution = nums => {
   let answer = 0;
-  let minValue;
-
-  let i = 0;
-  while (i < nums.length - 1) {
+  let sum = 0;
+  for (let i = 0; i < nums.length - 1; i++) {
     if (nums[i] < nums[i + 1]) {
-      minValue = nums[i];
-      i++;
-      while (nums[i] < nums[i + 1] && i < nums.length - 1) {
-        i++;
-      }
-      answer = Math.max(answer, nums[i] - minValue);
+      sum += nums[i + 1] - nums[i];
     } else {
-      i++;
+      answer = Math.max(sum, answer);
+      sum = 0;
     }
   }
-
+  answer = Math.max(sum, answer);
   return answer;
-}
+};
 
-console.log(solution([1, 2, 3, 4, 5, 6, 7]));
+console.log(solution([5, 2, 4, 7, 7, 3, 9, 10, 11]));
+console.log(solution([8, 12, 2, 3, 7, 6, 20, 3]));
