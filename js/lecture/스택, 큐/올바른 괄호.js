@@ -1,23 +1,16 @@
-function solution(s) {
+const solution = s => {
   const stack = [];
 
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === ')') {
-      if (stack.length === 0) {
-        return 'NO';
-      } else {
-        stack.pop();
-      }
-    } else {
-      stack.push('(');
+    if (s[i] === '(') stack.push(s[i]);
+    else {
+      if (stack.length === 0) return 'NO';
+      stack.pop();
     }
   }
 
-  if (stack.length > 0) {
-    return 'NO';
-  }
-
-  return 'YES';
-}
+  return stack.length === 0 ? 'YES' : 'NO';
+};
 
 console.log(solution('(()(()))(()'));
+console.log(solution('(())()'));

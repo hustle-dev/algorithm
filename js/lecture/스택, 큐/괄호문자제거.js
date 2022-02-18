@@ -1,18 +1,16 @@
-function solution(s) {
+const solution = s => {
   const stack = [];
 
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === ')') {
+  for (const str of s) {
+    if (str === ')') {
       while (stack[stack.length - 1] !== '(') {
         stack.pop();
       }
       stack.pop();
-    } else {
-      stack.push(s[i]);
-    }
+    } else stack.push(str);
   }
 
   return stack.join('');
-}
+};
 
 console.log(solution('(A(BC)D)EF(G(H)(IJ)K)LM(N)'));
