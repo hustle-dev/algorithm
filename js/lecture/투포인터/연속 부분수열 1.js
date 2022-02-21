@@ -1,26 +1,26 @@
-function solution(nums, m) {
-  let answer = 0;
-  let sum = 0;
+const solution = (nums, m) => {
   let lt = 0;
+  let rt = 0;
+  let sum = 0;
+  let answer = 0;
 
-  for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
-    if (sum === m) {
-      answer += 1;
+  while (rt < nums.length) {
+    sum += nums[rt];
+
+    if (sum === m) answer++;
+
+    while (sum > m) {
+      sum -= nums[lt];
+      if (sum === m) answer++;
+
+      lt++;
     }
 
-    if (sum > m) {
-      while (sum > m) {
-        sum -= nums[lt];
-        lt += 1;
-      }
-      if (sum === m) {
-        answer += 1;
-      }
-    }
+    rt++;
   }
-
   return answer;
-}
+};
 
+console.log(solution([1, 2, 1, 3, 1, 1, 1, 2], 6));
+console.log(solution([1, 1, 1, 1, 1, 1], 3));
 console.log(solution([1, 2, 1, 2, 1, 2, 1], 3));

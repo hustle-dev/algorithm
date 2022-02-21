@@ -1,19 +1,28 @@
-function solution(nums, k) {
+const solution = (nums, k) => {
+  const m = new Map();
   const answer = [];
-  const sH = new Map();
 
-  for (let i = 0; i < k - 1; i++) {
-    sH.set(nums[i], sH.get(nums[i]) + 1 || 1);
-  }
+  let lt = 0;
+  let rt = 0;
 
-  for (let i = k - 1; i < nums.length; i++) {
-    sH.set(nums[i], sH.get(nums[i]) + 1 || 1);
-    answer.push(Array.from(sH.keys()).length);
-    if (sH.get(nums[i - (k - 1)]) === 1) sH.delete(nums[i - (k - 1)]);
-    else sH.set(nums[i - (k - 1)], sH.get(nums[i - (k - 1)]) - 1);
+  while (rt < nums.length) {
+    m.set(nums[rt], m.get(nums[rt]) + 1 || 1);
+
+    if (rt - lt === k - 1) {
+      answer.push(m.size);
+      if (m.get(nums[lt]) === 1) {
+        m.delete(nums[lt]);
+      } else {
+        m.set(nums[lt], m.get(nums[lt]) - 1);
+      }
+      lt++;
+    }
+
+    rt++;
   }
 
   return answer;
-}
+};
 
+console.log(solution([20, 12, 20, 10, 23, 17, 10], 4));
 console.log(solution([1, 2, 3, 2, 2, 3, 3, 3, 3, 2], 3));
