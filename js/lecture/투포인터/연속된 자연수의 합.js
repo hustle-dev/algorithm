@@ -1,22 +1,25 @@
-function solution(n) {
+const solution = n => {
+  const half = Math.ceil(n / 2);
   let answer = 0;
-  const m = parseInt(n / 2) + 1;
-  const arr = Array.from({ length: m }, (v, i) => i + 1);
+
   let lt = 0;
+  let rt = 1;
   let sum = 0;
 
-  for (let rt = 0; rt < m; rt++) {
-    sum += arr[rt];
+  while (rt <= half) {
+    sum += rt;
 
     while (sum > n) {
-      sum -= arr[lt];
-      lt += 1;
+      sum -= lt;
+      lt++;
     }
-
-    if (sum === n) answer += 1;
+    if (sum === n) answer++;
+    rt++;
   }
 
   return answer;
-}
+};
 
+console.log(solution(15));
+console.log(solution(45678));
 console.log(solution(98765));
