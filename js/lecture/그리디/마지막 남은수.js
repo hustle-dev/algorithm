@@ -1,23 +1,18 @@
-function solution(nums) {
-  nums.sort((a, b) => a - b);
-
+const solution = nums => {
   while (nums.length > 1) {
-    const v1 = nums.pop();
-    const v2 = nums.pop();
-
-    if (v1 === v2) continue;
-    else {
-      nums.push(Math.abs(v1 - v2));
-    }
     nums.sort((a, b) => a - b);
+
+    const max1 = nums.pop();
+    const max2 = nums.pop();
+
+    if (max1 !== max2) nums.push(Math.abs(max1 - max2));
   }
 
   return nums.length === 0 ? 0 : nums[0];
-}
+};
 
+console.log(solution([5, 2, 4, 3, 1]));
 console.log(solution([7, 6, 3, 2, 4, 5, 1]));
-
-// ------------------ MaxHeap 버전 ----------------------------
 
 class MaxHeap {
   constructor() {
@@ -66,23 +61,22 @@ class MaxHeap {
   }
 }
 
-function solution(nums) {
-  const newHeap = new MaxHeap();
+const solution = nums => {
+  const nH = new MaxHeap();
 
-  for (let x of nums) {
-    newHeap.insert(x);
+  for (let i = 0; i < nums.length; i++) {
+    nH.insert(nums[i]);
   }
 
-  while (newHeap.size() > 1) {
-    const a = newHeap.get();
-    const b = newHeap.get();
-    if (a === b) continue;
+  while (nH.size() > 1) {
+    const max1 = nH.get();
+    const max2 = nH.get();
 
-    newHeap.insert(Math.abs(a - b));
+    if (max1 !== max2) nH.insert(Math.abs(max1 - max2));
   }
 
-  if (newHeap.size() === 1) return newHeap.get();
-  else return 0;
-}
+  return nH.size() === 0 ? 0 : nH.get();
+};
 
+console.log(solution([5, 2, 4, 3, 1]));
 console.log(solution([7, 6, 3, 2, 4, 5, 1]));

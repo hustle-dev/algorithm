@@ -1,27 +1,18 @@
-function solution(meeting) {
-  let answer = 0;
-  let et = 0;
+const solution = meeting => {
+  meeting.sort((a, b) => (a[1] <= b[1] ? -1 : a[0] <= b[0] ? -1 : 1));
 
-  meeting.sort((a, b) => {
-    if (a[1] === b[1]) {
-      return a[0] - b[0];
-    } else {
-      return a[1] - b[1];
-    }
-  });
-
-  answer += 1;
-  et = meeting[0][1];
+  let cnt = 1;
+  let end = meeting[0][1];
 
   for (let i = 1; i < meeting.length; i++) {
-    if (et <= meeting[i][0]) {
-      answer += 1;
-      et = meeting[i][1];
+    if (end <= meeting[i][0]) {
+      end = meeting[i][1];
+      cnt += 1;
     }
   }
 
-  return answer;
-}
+  return cnt;
+};
 
 console.log(
   solution([

@@ -1,21 +1,20 @@
-function solution(nums, m) {
-  let answer = 0;
+const solution = (nums, m) => {
   nums.sort((a, b) => a - b);
+
   let lt = 0;
   let rt = nums.length - 1;
 
+  let cnt = 0;
+
   while (lt <= rt) {
-    if (nums[rt] + nums[lt] <= m) {
-      answer += 1;
-      rt -= 1;
-      lt += 1;
-    } else {
-      answer += 1;
-      rt -= 1;
+    if (nums[lt] + nums[rt] <= m) {
+      lt++;
     }
+    rt--;
+    cnt += 1;
   }
 
-  return answer;
-}
+  return cnt;
+};
 
 console.log(solution([90, 50, 70, 100, 60], 140));
