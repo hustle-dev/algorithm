@@ -2,10 +2,11 @@ const solution = n => {
   const answer = [];
   const temp = [];
 
-  function DFS(L) {
+  const DFS = L => {
     if (L === n + 1) {
       if (temp.length !== 0) {
         answer.push([...temp]);
+        return;
       }
     } else {
       temp.push(L);
@@ -13,9 +14,10 @@ const solution = n => {
       temp.pop();
       DFS(L + 1);
     }
-  }
+  };
 
   DFS(1);
+
   return answer;
 };
 

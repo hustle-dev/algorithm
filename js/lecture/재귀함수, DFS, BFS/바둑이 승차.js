@@ -2,7 +2,7 @@ const solution = (nums, c) => {
   let answer = 0;
   const total = nums.reduce((acc, cur) => acc + cur, 0);
 
-  function DFS(L, sum, tsum) {
+  const DFS = (L, sum, tsum) => {
     if (total - tsum + sum < answer) return;
     if (sum > c) return;
     if (L === nums.length) {
@@ -11,8 +11,7 @@ const solution = (nums, c) => {
       DFS(L + 1, sum + nums[L], tsum + nums[L]);
       DFS(L + 1, sum, tsum + nums[L]);
     }
-  }
-
+  };
   DFS(0, 0, 0);
   return answer;
 };

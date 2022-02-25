@@ -1,18 +1,19 @@
 const solution = (nums, m) => {
   let answer = 0;
+  const total = nums.reduce((acc, cur) => acc + cur[0], 0);
 
-  function DFS(L, time, score) {
+  const DFS = (L, sum, time, tsum) => {
+    if (time > m) return;
+    if (total - tsum + sum < answer) return;
     if (L === nums.length) {
-      if (time <= m) {
-        answer = Math.max(answer, score);
-      }
+      answer = Math.max(answer, sum);
     } else {
-      DFS(L + 1, time + nums[L][1], score + nums[L][0]);
-      DFS(L + 1, time, score);
+      DFS(L + 1, sum + nums[L][0], time + nums[L][1], tsum + nums[L][0]);
+      DFS(L + 1, sum, time, tsum + nums[L][0]);
     }
-  }
+  };
 
-  DFS(0, 0, 0);
+  DFS(0, 0, 0, 0);
   return answer;
 };
 
@@ -28,7 +29,6 @@ console.log(
     20
   )
 );
-
 console.log(
   solution(
     [

@@ -1,14 +1,16 @@
-function solution(n) {
+const solution = n => {
   let answer = '';
+  const recur = n => {
+    if (n <= 1) answer = n + answer;
+    else {
+      answer = (n % 2) + answer;
+      return recur(Math.floor(n / 2));
+    }
+  };
 
-  function recursive(n) {
-    if (n === 0) return;
-    recursive(parseInt(n / 2));
-    answer += n % 2;
-  }
+  recur(n);
 
-  recursive(n);
   return answer;
-}
+};
 
 console.log(solution(11));

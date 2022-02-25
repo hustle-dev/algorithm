@@ -1,16 +1,18 @@
-function solution(n) {
+const solution = n => {
   let answer = '';
-  function DFS(v) {
-    if (v > 7) return;
+
+  const DFS = L => {
+    if (L > n) return;
     else {
-      DFS(v * 2);
-      DFS(v * 2 + 1);
-      answer += v + ' ';
+      DFS(L * 2);
+      answer += L + ' ';
+      DFS(L * 2 + 1);
     }
-  }
+  };
 
-  DFS(n);
+  DFS(1);
+
   return answer;
-}
+};
 
-console.log(solution(1));
+console.log(solution(7));

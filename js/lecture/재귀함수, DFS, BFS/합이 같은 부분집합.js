@@ -1,24 +1,20 @@
 const solution = nums => {
-  let answer = 'NO';
-  let flag = false;
   const total = nums.reduce((acc, cur) => acc + cur, 0);
+  let flag = false;
 
-  function DFS(L, sum) {
+  const DFS = (L, sum) => {
     if (flag) return;
-
     if (L === nums.length) {
-      if (total - sum === sum) {
-        answer = 'YES';
-        flag = true;
-      }
+      if (total - sum === sum) flag = true;
+      return;
     } else {
       DFS(L + 1, sum + nums[L]);
       DFS(L + 1, sum);
     }
-  }
+  };
 
   DFS(0, 0);
-  return answer;
+  return flag ? 'YES' : 'NO';
 };
 
 console.log(solution([1, 3, 5, 6, 7, 10]));
