@@ -2,7 +2,7 @@ const solution = (n, m) => {
   const answer = [];
   const temp = [];
 
-  function DFS(L, s) {
+  const DFS = (L, s) => {
     if (L === m) {
       answer.push([...temp]);
     } else {
@@ -12,7 +12,7 @@ const solution = (n, m) => {
         temp.pop();
       }
     }
-  }
+  };
 
   DFS(0, 1);
   return answer;

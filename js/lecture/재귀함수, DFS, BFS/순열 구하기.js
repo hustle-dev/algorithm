@@ -1,9 +1,9 @@
 const solution = (nums, m) => {
+  const ch = new Array(nums.length).fill(0);
   const answer = [];
-  const ch = Array(nums.length).fill(0);
   const temp = [];
 
-  function DFS(L) {
+  const DFS = L => {
     if (L === m) {
       answer.push([...temp]);
     } else {
@@ -17,9 +17,10 @@ const solution = (nums, m) => {
         }
       }
     }
-  }
+  };
 
   DFS(0);
+
   return answer;
 };
 
