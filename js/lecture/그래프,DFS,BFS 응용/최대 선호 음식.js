@@ -22,6 +22,7 @@ const solution = (nums, D, K) => {
       st[i] += pow[nums[i][j]];
     }
   }
+  console.log(st);
 
   function DFS(L, s, bits) {
     if (L === K) {

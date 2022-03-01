@@ -1,35 +1,29 @@
-function solution(n, edges) {
-  let answer = 0;
+const solution = (n, edges) => {
   const graph = Array.from({ length: n + 1 }, () => Array(n + 1).fill(0));
-  const ch = Array.from({ length: n + 1 }, () => 0);
-  const temp = [];
+  const ch = new Array(n + 1).fill(0);
+  edges.forEach(([from, to]) => {
+    graph[from][to] = 1;
+  });
+  let answer = 0;
 
-  for (let [a, b] of edges) {
-    graph[a][b] = 1;
-  }
-
-  function DFS(L) {
-    if (L === n) {
-      answer++;
-    } else {
+  const DFS = L => {
+    if (L === n) answer += 1;
+    else {
       for (let i = 1; i <= n; i++) {
         if (ch[i] === 0 && graph[L][i] === 1) {
           ch[i] = 1;
-          temp.push(i);
           DFS(i);
           ch[i] = 0;
-          temp.pop();
         }
       }
     }
-  }
+  };
 
-  temp.push(1);
   ch[1] = 1;
   DFS(1);
 
   return answer;
-}
+};
 
 console.log(
   solution(5, [

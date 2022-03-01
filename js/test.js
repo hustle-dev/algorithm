@@ -1,43 +1,37 @@
-const solution = board => {
-  const dx = [-1, 0, 1, 0];
-  const dy = [0, -1, 0, 1];
-  const N = board.length;
-  const BFS = () => {
-    const queue = [];
-    queue.push([0, 0]);
-    board[0][0] = 1;
-    let L = 1;
-    while (queue.length) {
-      const len = queue.length;
-      for (let i = 0; i < len; i++) {
-        const [x, y] = queue.shift();
-        for (let j = 0; j < 4; j++) {
-          const nx = x + dy[j];
-          const ny = y + dx[j];
+const solution = (nums, d, k) => {
+  const pow = new Array(d + 1).fill(0);
+  const N = nums.length;
+  const weightArr = new Array(N).fill(0);
 
-          if (nx === N - 1 && ny === N - 1) return L;
+  pow[1] = 1;
+  for (let i = 2; i <= d; i++) {
+    pow[i] = pow[i - 1] * 2;
+  }
 
-          if (nx >= 0 && ny >= 0 && nx < N && ny < N && board[nx][ny] === 0) {
-            board[nx][ny] = L;
-            queue.push([nx, ny]);
-          }
-        }
-      }
-      L++;
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < nums[i].length; j++) {
+      weightArr[i] += pow[nums[i][j]];
     }
-    return -1;
+  }
+
+  let answer = 0;
+  const DFS = (L, s, bits) => {
+    if (L === k) {
+      let sum = 0;
+      for (let i = 0; i < N; i++) {
+        if ((bits & weightArr[i]) === weightArr[i]) sum++;
+      }
+      answer = Math.max(answer, sum);
+    } else {
+      for (let i = s; i <= d; i++) {
+        DFS(L + 1, i + 1, bits + pow[i]);
+      }
+    }
   };
-  return BFS();
+
+  DFS(0, 1, 0);
+
+  return answer;
 };
 
-console.log(
-  solution([
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 1, 0, 0, 0],
-    [1, 1, 0, 1, 0, 1, 1],
-    [1, 1, 0, 1, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 0],
-    [1, 0, 1, 0, 0, 0, 0],
-  ])
-);
+console.log(solution([[1], [2, 3], [3], [1, 2], [], [2, 1], [2, 3, 4], [3, 4]], 4, 3));

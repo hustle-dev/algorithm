@@ -1,32 +1,32 @@
-function solution(n, edges) {
-  let answer = 0;
+const solution = (n, edges) => {
   const graph = Array.from({ length: n + 1 }, () => Array());
-  const ch = Array.from({ length: n + 1 }, () => 0);
+  const ch = new Array(n + 1).fill(0);
+  let answer = 0;
 
-  for (let [a, b] of edges) {
+  for (const [a, b] of edges) {
     graph[a].push(b);
     graph[b].push(a);
   }
 
-  function DFS(L) {
-    for (let nv of graph[L]) {
-      if (ch[nv] === 0) {
-        ch[nv] = 1;
-        DFS(nv);
+  const DFS = L => {
+    for (const x of graph[L]) {
+      if (ch[x] === 0) {
+        ch[x] = 1;
+        DFS(x);
       }
     }
-  }
+  };
 
   for (let i = 1; i <= n; i++) {
     if (ch[i] === 0) {
       ch[i] = 1;
       DFS(i);
-      answer++;
+      answer += 1;
     }
   }
 
   return answer;
-}
+};
 
 console.log(
   solution(7, [
