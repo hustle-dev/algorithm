@@ -1,34 +1,28 @@
-// 크루스칼 --> 그리디
-
-function solution(n, edges) {
-  let sum = 0;
-  let unf = Array.from({ length: n + 1 }, (v, i) => i);
-
+const solution = (n, edges) => {
   edges.sort((a, b) => a[2] - b[2]);
+  const unf = Array.from({ length: n }, (_, i) => i);
+  let minimumCost = 0;
 
-  function Find(v) {
+  const Find = v => {
     if (v === unf[v]) return v;
     else {
       unf[v] = Find(unf[v]);
       return unf[v];
     }
-  }
+  };
 
-  function Union(a, b, c) {
-    let fa = Find(a);
-    let fb = Find(b);
+  for (const [a, b, c] of edges) {
+    const fa = Find(a);
+    const fb = Find(b);
+
     if (fa !== fb) {
       unf[fa] = fb;
-      sum += c;
+      minimumCost += c;
     }
   }
 
-  for (let [a, b, c] of edges) {
-    Union(a, b, c);
-  }
-
-  return sum;
-}
+  return minimumCost;
+};
 
 console.log(
   solution(9, [

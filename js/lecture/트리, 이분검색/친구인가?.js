@@ -1,30 +1,23 @@
-function solution(n, nums, s1, s2) {
-  let unf = Array.from({ length: n + 1 }, (v, i) => i);
+const solution = (n, nums, s1, s2) => {
+  const unf = Array.from({ length: n + 1 }, (_, i) => i);
 
-  function Find(v) {
+  const Find = v => {
     if (v === unf[v]) return v;
     else {
       unf[v] = Find(unf[v]);
       return unf[v];
     }
-  }
+  };
 
-  function Union(a, b) {
-    let fa = Find(a);
-    let fb = Find(b);
+  for (const [a, b] of nums) {
+    const fa = Find(a);
+    const fb = Find(b);
+
     if (fa !== fb) unf[fa] = fb;
   }
 
-  for (let [a, b] of nums) {
-    Union(a, b);
-  }
-
-  if (Find(s1) === Find(s2)) {
-    return 'YES';
-  } else {
-    return 'NO';
-  }
-}
+  return Find(s1) !== Find(s2) ? 'NO' : 'YES';
+};
 
 console.log(
   solution(

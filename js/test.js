@@ -1,37 +1,42 @@
-const solution = (nums, d, k) => {
-  const pow = new Array(d + 1).fill(0);
-  const N = nums.length;
-  const weightArr = new Array(N).fill(0);
+const solution = (n, edges) => {
+  edges.sort((a, b) => a[2] - b[2]);
+  const unf = Array.from({ length: n }, (_, i) => i);
+  let minimumCost = 0;
 
-  pow[1] = 1;
-  for (let i = 2; i <= d; i++) {
-    pow[i] = pow[i - 1] * 2;
-  }
-
-  for (let i = 0; i < N; i++) {
-    for (let j = 0; j < nums[i].length; j++) {
-      weightArr[i] += pow[nums[i][j]];
-    }
-  }
-
-  let answer = 0;
-  const DFS = (L, s, bits) => {
-    if (L === k) {
-      let sum = 0;
-      for (let i = 0; i < N; i++) {
-        if ((bits & weightArr[i]) === weightArr[i]) sum++;
-      }
-      answer = Math.max(answer, sum);
-    } else {
-      for (let i = s; i <= d; i++) {
-        DFS(L + 1, i + 1, bits + pow[i]);
-      }
+  const Find = v => {
+    if (v === unf[v]) return v;
+    else {
+      unf[v] = Find(unf[v]);
+      return unf[v];
     }
   };
 
-  DFS(0, 1, 0);
+  for (const [a, b, c] of edges) {
+    const fa = Find(a);
+    const fb = Find(b);
 
-  return answer;
+    if (fa !== fb) {
+      unf[fa] = fb;
+      minimumCost += c;
+    }
+  }
+
+  return minimumCost;
 };
 
-console.log(solution([[1], [2, 3], [3], [1, 2], [], [2, 1], [2, 3, 4], [3, 4]], 4, 3));
+console.log(
+  solution(9, [
+    [1, 2, 12],
+    [1, 9, 25],
+    [2, 3, 10],
+    [2, 8, 17],
+    [2, 9, 8],
+    [3, 4, 18],
+    [3, 7, 55],
+    [4, 5, 44],
+    [5, 6, 60],
+    [5, 7, 38],
+    [7, 8, 35],
+    [8, 9, 15],
+  ])
+);
