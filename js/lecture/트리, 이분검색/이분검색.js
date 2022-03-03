@@ -1,12 +1,12 @@
-function solution(nums, m) {
-  let answer = 0;
+const solution = (nums, m) => {
   nums.sort((a, b) => a - b);
+  let answer = -1;
 
   let lt = 0;
   let rt = nums.length - 1;
 
   while (lt <= rt) {
-    let mid = parseInt((lt + rt) / 2);
+    let mid = Math.floor((lt + rt) / 2);
     if (nums[mid] === m) {
       answer = mid + 1;
       break;
@@ -16,7 +16,8 @@ function solution(nums, m) {
       rt = mid - 1;
     }
   }
+
   return answer;
-}
+};
 
 console.log(solution([23, 87, 65, 12, 57, 32, 99, 81], 32));
