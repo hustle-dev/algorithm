@@ -1,18 +1,18 @@
-function solution(nums, K) {
-  let answer = 0;
+const solution = (nums, K) => {
   let lt = 0;
-  let rt = Number.MAX_SAFE_INTEGER;
+  let rt = 1000000;
+  let answer = 0;
 
-  function count(len) {
-    let count = 0;
-    for (let i = 0; i < nums.length; i++) {
-      count += Math.floor(nums[i] / len);
+  const count = len => {
+    let cnt = 0;
+    for (const x of nums) {
+      cnt += Math.floor(x / len);
     }
-    return count;
-  }
+    return cnt;
+  };
 
   while (lt <= rt) {
-    const mid = parseInt((lt + rt) / 2);
+    const mid = Math.floor((lt + rt) / 2);
     if (count(mid) >= K) {
       answer = mid;
       lt = mid + 1;
@@ -20,7 +20,8 @@ function solution(nums, K) {
       rt = mid - 1;
     }
   }
+
   return answer;
-}
+};
 
 console.log(solution([802, 743, 457, 539], 11));
