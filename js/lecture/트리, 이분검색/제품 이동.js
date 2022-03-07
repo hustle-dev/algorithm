@@ -1,36 +1,37 @@
-function solution(N, edges, s, e) {
-  let answer = 0;
-  const graph = Array.from({ length: N + 1 }, () => Array());
-  const ch = Array.from({ length: N + 1 }, () => 0);
-  let lt = 0;
+const solution = (n, edges, s, e) => {
+  edges.sort((a, b) => a[2] - b[2]);
+  const graph = Array.from({ length: n + 1 }, () => Array());
+  let lt = 1;
   let rt = Number.MAX_SAFE_INTEGER;
+  let answer = 0;
 
   for (const [a, b, c] of edges) {
     graph[a].push([b, c]);
     graph[b].push([a, c]);
   }
 
-  function BFS(weight) {
+  const BFS = weight => {
+    const ch = new Array(n + 1).fill(0);
     const queue = [];
-    queue.push(s);
+    queue.push([s, 0]);
     ch[s] = 1;
     while (queue.length) {
-      let v = queue.shift();
-      for (let [nv, maxWeight] of graph[v]) {
-        if (ch[nv] === 0 && maxWeight >= weight) {
-          if (nv === e) return true;
-          ch[nv] = 1;
-          queue.push(nv);
+      const [x, _] = queue.shift();
+      for (const [nx, maxWeight] of graph[x]) {
+        if (maxWeight >= weight && ch[nx] === 0) {
+          if (nx === e) return true;
+          ch[nx] = 1;
+          queue.push([nx, weight]);
         }
       }
     }
     return false;
-  }
+  };
 
   while (lt <= rt) {
     let mid = Math.floor((lt + rt) / 2);
     if (BFS(mid)) {
-      answer = mid;
+      answer = Math.max(answer, mid);
       lt = mid + 1;
     } else {
       rt = mid - 1;
@@ -38,7 +39,7 @@ function solution(N, edges, s, e) {
   }
 
   return answer;
-}
+};
 
 console.log(
   solution(
