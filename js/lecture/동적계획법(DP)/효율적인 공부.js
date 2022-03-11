@@ -1,8 +1,6 @@
 const solution = (times, r) => {
-  let answer = 0;
   times.sort((a, b) => (a[1] < b[1] ? -1 : a[0] - b[0]));
-  const dp = Array(times.length).fill(0);
-
+  const dp = new Array(times.length).fill(0);
   dp[0] = times[0][2];
 
   for (let i = 1; i < times.length; i++) {
@@ -12,10 +10,8 @@ const solution = (times, r) => {
         dp[i] = dp[j] + times[i][2];
       }
     }
-    answer = Math.max(answer, dp[i]);
   }
-
-  return answer;
+  return Math.max(...dp);
 };
 
 console.log(
