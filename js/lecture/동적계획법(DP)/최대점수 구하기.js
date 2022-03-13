@@ -1,14 +1,11 @@
 const solution = (nums, m) => {
-  const dp = Array(m + 1).fill(0);
+  const dp = new Array(m + 1).fill(0);
 
-  for (let i = 0; i < nums.length; i++) {
-    let times = nums[i][1];
-    let score = nums[i][0];
-    for (let j = m; j >= times; j--) {
-      dp[j] = Math.max(dp[j], dp[j - times] + score);
+  for (const [score, time] of nums) {
+    for (let i = m; i >= time; i--) {
+      dp[i] = Math.max(dp[i], dp[i - time] + score);
     }
   }
-
   return dp[m];
 };
 
