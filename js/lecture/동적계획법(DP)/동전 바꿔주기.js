@@ -1,13 +1,12 @@
 const solution = (t, coins) => {
-  const dp = Array(t + 1).fill(0);
+  const dp = new Array(t + 1).fill(0);
   dp[0] = 1;
 
-  for (let i = 0; i < coins.length; i++) {
-    let [price, num] = coins[i];
-    for (let j = t; j >= 0; j--) {
-      for (let k = 1; k <= num; k++) {
-        if (j - price * k < 0) break;
-        dp[j] += dp[j - price * k];
+  for (const [coin, count] of coins) {
+    for (let i = t; i >= 0; i--) {
+      for (let j = 1; j <= count; j++) {
+        if (i - j * coin < 0) break;
+        dp[i] += dp[i - j * coin];
       }
     }
   }
