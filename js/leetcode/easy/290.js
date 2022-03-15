@@ -1,4 +1,11 @@
-const solution = (pattern, s) => {
+/**
+ * @title Word Pattern
+ * @link https://leetcode.com/problems/word-pattern/
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+var wordPattern = function (pattern, s) {
   const words = s.split(' ');
   const map = new Map();
 
@@ -14,7 +21,3 @@ const solution = (pattern, s) => {
   }
   return true;
 };
-
-console.log(solution('abba', 'dog cat cat dog'));
-console.log(solution('abba', 'dog cat cat fish'));
-console.log(solution('aaa', 'dog cat cat dog'));
