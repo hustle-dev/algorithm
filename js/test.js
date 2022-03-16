@@ -1,20 +1,10 @@
-const solution = (pattern, s) => {
-  const words = s.split(' ');
-  const map = new Map();
-
-  if (words.length !== pattern.length) return false;
-  if (new Set(words).size !== new Set(pattern).size) return false;
-
-  for (let i = 0; i < pattern.length; i++) {
-    const pat = pattern[i];
-    const word = words[i];
-
-    if (map.has(pat) && map.get(pat) !== word) return false;
-    map.set(pat, word);
+const solution = n => {
+  for (let i = 1; i <= n; i++) {
+    if (!i.toString().includes('0') && !(n - i).toString().includes('0')) {
+      return [i, n - i];
+    }
   }
-  return true;
 };
 
-console.log(solution('abba', 'dog cat cat dog'));
-console.log(solution('abba', 'dog cat cat fish'));
-console.log(solution('aaa', 'dog cat cat dog'));
+console.log(solution(2));
+console.log(solution(11));
