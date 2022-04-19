@@ -1,29 +1,51 @@
-const solution = (n, m, room, bath) => {
-  let answer = 0;
-  const matrix = Array.from({ length: n }, () => Array(m).fill(0));
-  const dx = [-1, 0, 1, 0];
-  const dy = [0, -1, 0, 1];
+const solution = (tstring, variables) => {
+  const obj = {};
+  const N = variables.length;
+  const unf = new Array(N).fill(0);
+  const stringArr = tstring.split(' ');
 
-  // const factorial = n => {
-  //   if (n === 1) return n;
-  //   return n * factorial(n - 1);
-  // };
+  for (const [variable, value] of variables) {
+    obj[variable] = value;
+  }
 
-  // const duplicate = factorial(room) * factorial(bath);
+  for (let i = 0; i < stringArr.length; i++) {
+    const str = stringArr[i];
+    if (str === '{') {
+      console.log(str);
+    }
+  }
 
-  // const DFS = ()
-
-  // for(let i = 0; i<room; i++) {
-
-  //   for(let j = 0; j<bath; j++) {
-
-  //   }
-  // }
-
-  console.log(matrix);
+  console.log(obj);
 };
 
-console.log(solution(4, 5, 3, 1)); // 20
-console.log(solution(2, 3, 1, 1)); // 0
-console.log(solution(3, 4, 2, 1)); // 0
-console.log(solution(2, 4, 1, 1)); // 6
+console.log(
+  solution('this is {template} {template} is {state}', [
+    ['template', 'string'],
+    ['state', 'changed'],
+  ]) // this is string string is changed
+);
+
+// console.log(solution('this is {template} {template} is {state}'), [
+//   ['template', 'string'],
+//   ['state', '{template}'],
+// ]); // this is string string is string
+
+// console.log(solution('this is {template} {template} is {state}'), [
+//   ['template', '{state}'],
+//   ['state', '{template}'],
+// ]); // this is {template} {template} is {state}
+
+// console.log(solution('this is {template} {template} is {state}'), [
+//   ['template', '{state}'],
+//   ['state', '{templates}'],
+// ]); // this is {templates} {templates} is {templates}
+
+// console.log(solution('{a} {b} {c} {d} {i}'), [
+//   ['b', '{c}'],
+//   ['a', '{b}'],
+//   ['e', '{f}'],
+//   ['h', 'i'],
+//   ['d', '{e}'],
+//   ['f', '{d}'],
+//   ['c', 'd'],
+// ]); // d d d {d} {i}

@@ -14,7 +14,6 @@ const solution = (n, m, room, bath) => {
   let ans = 0;
 
   const isValid = (arr, sum) => {
-    console.log(arr);
     const chk = new Array(n).fill(null).map(() => new Array(m).fill(0));
     let isFound = false;
     let maxArea = 0;
@@ -32,6 +31,7 @@ const solution = (n, m, room, bath) => {
         }
       }
     }
+
     let visited = new Set();
     let count = 1;
     while (q.length) {
