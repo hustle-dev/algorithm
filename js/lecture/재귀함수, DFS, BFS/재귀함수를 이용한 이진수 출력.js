@@ -1,16 +1,6 @@
 const solution = n => {
-  let answer = '';
-  const recur = n => {
-    if (n <= 1) answer = n + answer;
-    else {
-      answer = (n % 2) + answer;
-      return recur(Math.floor(n / 2));
-    }
-  };
-
-  recur(n);
-
-  return answer;
+  if (n === 0) return '';
+  else return solution(Math.floor(n / 2)) + String(n % 2);
 };
 
 console.log(solution(11));
