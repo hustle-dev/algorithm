@@ -16,14 +16,13 @@ const factorial = n => {
 //   }, DELAY_TIME);
 // };
 
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 // Promise 버전
 const solution = async () => {
   try {
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve(console.log(factorial(a)));
-      }, DELAY_TIME);
-    });
+    await wait(DELAY_TIME);
+    console.log(factorial(a));
   } catch (error) {
     throw new Error(error);
   }
