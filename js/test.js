@@ -1,38 +1,54 @@
-const solution = (n, info) => {
-  let maxDiff = 0;
-  let ans = new Array(11).fill(0);
+const solution = places => {
+  const ans = [];
 
-  const DFS = (apeach, ryan, idx, count, board) => {
-    if (n < count) return;
+  const dx = [-1, 0, 1, 0];
+  const dy = [0, -1, 0, 1];
 
-    if (idx > 10) {
-      const diff = ryan - apeach;
+  places.forEach(place => {
+    const graph = Array.from({ length: 5 }, () => Array(5).fill(0));
+    let flag = false;
 
-      if (maxDiff < diff) {
-        maxDiff = diff;
-        ans = board;
-        ans[10] = n - count;
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        graph[i][j] = place[i][j];
       }
-
-      return;
     }
 
-    if (n > count) {
-      const newBoard = [...board];
-      newBoard[10 - idx] = info[10 - idx] + 1;
-      DFS(apeach, ryan + idx, idx + 1, count + (info[10 - idx] + 1), newBoard);
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        if (graph[i][j] !== 'P') continue;
+
+        for (let k = 0; k < 4; k++) {
+          const ni = i + dy[k];
+          const nj = j + dx[k];
+
+          if (ni >= 0 && nj >= 0 && ni < 5 && nj < 5) {
+            if (graph[ni][nj] === 'P') {
+              flag = true;
+              break;
+            }
+          }
+        }
+      }
+      if (flag) break;
     }
 
-    if (info[10 - idx] > 0) {
-      DFS(apeach + idx, ryan, idx + 1, count, board);
+    if (flag) {
+      ans.push(0);
     } else {
-      DFS(apeach, ryan, idx + 1, count, board);
+      ans.push(1);
     }
-  };
+  });
 
-  DFS(0, 0, 0, 0, ans);
-
-  return maxDiff === 0 ? [-1] : ans;
+  return ans;
 };
 
-console.log(solution(5, [2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0]));
+console.log(
+  solution([
+    ['POOOP', 'OXXOX', 'OPXPX', 'OOXOX', 'POXXP'],
+    ['POOPX', 'OXPXP', 'PXXXO', 'OXXXO', 'OOOPP'],
+    ['PXOPX', 'OXOXP', 'OXPOX', 'OXXOP', 'PXPOX'],
+    ['OOOXX', 'XOOOX', 'OOOXX', 'OXOOX', 'OOOOO'],
+    ['PXPXP', 'XPXPX', 'PXPXP', 'XPXPX', 'PXPXP'],
+  ])
+);
